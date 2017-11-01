@@ -105,7 +105,7 @@ store.nextQuestion();
 console.log(store.currentQuestion)    // => 2
 ```
 
-There's some odd things here! First, our `Store` function has an initial capitalization. This has no inherent affect but is a *convention* in JavaScript (and most languages) when defining a class or prototype, which is the purpose of this function.
+There's some odd things here! First, our `Store` function has an initial capitalization. This has no inherent effect but is a *convention* in JavaScript (and most languages) when defining a class or prototype, which is the purpose of this function.
 
 Notice inside the function that we don't generate an object. All it's doing is assigning props to a `this` object and not returning anything.
 
@@ -119,13 +119,21 @@ ES6 created some **syntactic sugar** for our function constructor above which mo
 
 ```javascript
 class Store {
+  // This function runs when a new `store` is instantiated
   constructor(totalQuestions) {
     this.currentQuestion = 1;
     this.totalQuestions = totalQuestions;
   }
 
+  // All methods below are available on the Store.prototype
+  // -- NOTE: with `class` syntax, you do NOT put commas between 
+  // -- methods as you would in a normal object's props!
   nextQuestion() {
     this.currentQuestion++;
+  }
+
+  foo() {
+    return 'bar';
   }
 }
 
@@ -133,7 +141,7 @@ const store = new Store();
 store.nextQuestion();
 ```
 
-While it's not really a class how a language like Java, Ruby, or Python would define it, because JavaScript doesn't have the engine underneath for many class features. This is an emulation of how classes behave, using the native JavaScript prototype chain. 
+This is not really a [class](https://en.wikipedia.org/wiki/Class_(computer_programming)) how a language like Java, Ruby, or Python would define it, because JavaScript doesn't have the engine underneath for many class features. This is an emulation of how classes behave, using the native JavaScript prototype chain. 
 
 If you haven't used class-oriented languages before this course, then these descriptions may be confusing. For now, the takeaway is that **function constructors** or the **class** syntax exist to let you *create objects with functions that can be applied to those objects.* Remember our original OOP definition at the top of this article?
 
