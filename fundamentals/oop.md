@@ -145,6 +145,54 @@ This is not really a [class](https://en.wikipedia.org/wiki/Class_(computer_progr
 
 If you haven't used class-oriented languages before this course, then these descriptions may be confusing. For now, the takeaway is that **function constructors** or the **class** syntax exist to let you *create objects with functions that can be applied to those objects.* Remember our original OOP definition at the top of this article?
 
+### Private data
+
+It's a common use case in programming that our objects will hold data we want to be more difficult to access. 
+
+For example, imagine a class for a bank account where you have a balance and want to enable withdrawals. You want to be able to read the account balance (`account.balance`), but you *don't* want the ability to **set** the balance directly (`account.balance = 50`).  Instead you want to call a withdraw method that will take care of reconciling the balance and ensuring you have the funds to withdraw (`account.withdraw(50)`).
+
+Making the `balance` property ordinarily visible means a developer could easily change that balance directly by accident. 
+
+```javascript
+class BankAccount {
+  constructor() {
+    this.balance = 100;
+  }
+}
+
+const johnAccount = new BankAccount();
+johnAccount.balance = 200;  // => Would work!
+```
+
+In class-oriented languages, there are built-in protections for creating private data and methods. In JavaScript, there are only standards and patterns you can adopt to emulate this. We're not going to learn all of those today; instead, we'll cover one convention used that indicates to a programmer they should not touch the property directly - the underscore `_` prefix.
+
+```javascript
+class BankAccount {
+  constructor() {
+    this._balance = 100;
+  }
+
+  getBalance() {
+    return this._balance;
+  }
+
+  withdraw(amount) {
+    if (amount > this._balance) {
+      throw new Error('Your balance is insufficient for that withdrawal.');
+    }
+
+    this._balance -= amount;
+  }
+}
+
+const johnAccount = new BankAccount();
+console.log(johnAccount.balance)        // => undefined
+console.log(johnAccount.getBalance())   // => 100
+johnAccount.withdraw(200);              // => Error: Your balance is insufficient...
+```
+
+In the above example, we have "hidden" the actual balance on a property prefixed with `_`, shown in the constructor as `this._balance`. JavaScript won't prevent access, but as a developer, you should know not to access data named with a prefix directly. To get the balance, we've built a `getBalance()` method that will deliver the value of the `_balance` property and there's no 'setter' method as we don't want to set the balance directly. Then our `withdraw()` method does the necessary check and changes our `_balance`.
+
 
 ### Exercise
 
@@ -158,5 +206,6 @@ Things to keep in mind:
   - Template generators
   - Rendering functions
   - Event handlers
-- Use one of the object creation methods above (we recommend the ES6 `class` syntax) to define blueprints for your top-level objects
+- Use `class` to define blueprints for your top-level objects
   - Expect to use a constructor for setting 1) default values or 2) values passed in when creating the object.
+- Use private properties/methods wherever appropriate
