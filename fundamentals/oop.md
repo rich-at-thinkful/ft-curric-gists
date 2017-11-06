@@ -215,4 +215,4 @@ Things to keep in mind:
   - Event handlers
 - Use `class` to define blueprints for your top-level objects
   - Expect to use a constructor for setting 1) default values or 2) values passed in when creating the object.
-- Use private properties/methods wherever appropriate
+- Use private attributes/methods wherever appropriate
