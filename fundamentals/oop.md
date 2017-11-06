@@ -199,6 +199,7 @@ johnAccount.withdraw(200);              // => Error: Your balance is insufficien
 
 In the above example, we have "hidden" the actual balance on a property prefixed with `_`, shown in the constructor as `this._balance`. JavaScript won't prevent access, but as a developer, you should know not to access data named with a prefix directly. To get the balance, we've built a `getBalance()` method that will deliver the value of the `_balance` property and there's no 'setter' method as we don't want to set the balance directly. Then our `withdraw()` method does the necessary check and changes our `_balance`.
 
+>**ASIDE:** JavaScript's `class` syntax provides for special *getter/setter* methods also known as accessors, which are common in class oriented languages, but we're going to save those extra concepts for future lessons.
 
 ### Exercise
 
