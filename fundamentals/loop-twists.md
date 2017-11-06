@@ -1,0 +1,7 @@
+- Redo the "max and min (without sort or Math.max/min)" drill but this time use a `while` loop instead of a `for` loop
+- Redo "Compute the average" exercise but this use a `while` loop instead of a `for` loop
+    - Bonus Tasks: Try the `Array.forEach()` method.
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+- Redo the "Fizz Buzz" drill" if you used `if/else` last time, then try `switch` statement this time.
+    - Hint: Remember, you use `switch` on a *single* result. You only need to make one calculation and then set up `case`s for the possible results.
+    - Hint #2: If something is divisible by both 5 and 3, what's the lowest possible number it's divisible by?
