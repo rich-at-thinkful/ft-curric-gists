@@ -21,10 +21,11 @@ This is just an object with a straightforward data structure. Throughout our app
 store.currentQuestion++;
 ```
 
-Or maybe you wrote a function to do it:
+Or maybe you wrote a function to do it so it can check there are more questions before incrementing:
 
 ```javascript
 function nextQuestion(store){
+  if (store.currentQuestion <= store.totalQuestions) return;
   store.currentQuestion++;
 }
 ```
@@ -35,6 +36,7 @@ The OOP approach would be to create functions that already have the **context** 
 
 ```javascript
 function nextQuestion() {
+  if (this.currentQuestion <= this.totalQuestions) return;
   this.currentQuestion++;
 }
 ```
@@ -49,6 +51,7 @@ const store = {
   totalQuestions: 5,
 
   nextQuestion() {
+    if (this.currentQuestion <= this.totalQuestions) return;
     this.currentQuestion++;
   }
 };
@@ -68,6 +71,7 @@ const createStore = function(totalQuestions = 5) {
 
     // fyi: this is an es6 shorthand function
     nextQuestion() {  
+      if (this.currentQuestion <= this.totalQuestions) return;
       this.currentQuestion++;
     }
   };
@@ -91,12 +95,13 @@ So, what does this mean? Every object in JavaScript exists on the **prototype ch
 As with many things in JavaScript there are multiple syntaxes to achieve this. The first we'll look at is **constructor functions**:
 
 ```javascript
-function Store(totalQuestions){
+function Store(totalQuestions = 5){
   this.currentQuestion = 1;
   this.totalQuestions = totalQuestions;
 }
 
 Store.prototype.nextQuestion = function(){
+  if (this.currentQuestion <= this.totalQuestions) return;
   this.currentQuestion++;
 }
 
@@ -120,7 +125,7 @@ ES6 created some **syntactic sugar** for our function constructor above which mo
 ```javascript
 class Store {
   // This function runs when a new `store` is instantiated
-  constructor(totalQuestions) {
+  constructor(totalQuestions = 5) {
     this.currentQuestion = 1;
     this.totalQuestions = totalQuestions;
   }
@@ -129,6 +134,7 @@ class Store {
   // -- NOTE: with `class` syntax, you do NOT put commas between 
   // -- methods as you would in a normal object's props!
   nextQuestion() {
+    if (this.currentQuestion <= this.totalQuestions) return;
     this.currentQuestion++;
   }
 
