@@ -18,6 +18,7 @@
 Let's write our own version of the [filter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) which is used to create a new array from an old array, but only including elements that meet criteria set in the callback function. The usage is below; we recommend you paste this code into your code editor and write your function in the space indicated:
 
 ```
+// DO NOT EDIT BETWEEN THESE LINES ----->
 // Return only names that begin with 'R'
 const myNames = ['Rich', 'Joe', 'Bhaumik', 'Ray'];
 
@@ -27,8 +28,9 @@ const filteredNames = filter(myNames, function(name) {
 });
 
 console.log(filteredNames) // => ['Rich', 'Ray']
+// <---- DO NOT EDIT BETWEEN THESE LINES
 
-// TASK -- DEFINE YOUR FILTER FUNCTION BELOW:
+// TASK: DEFINE YOUR FILTER FUNCTION BELOW:
 function filter() {}
 ```
 
