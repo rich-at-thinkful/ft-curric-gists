@@ -114,9 +114,9 @@ There's some odd things here! First, our `Store` function has an initial capital
 
 Notice inside the function that we don't generate an object. All it's doing is assigning props to a `this` object and not returning anything.
 
-Why? Because when we call `Store()` at the bottom, we prefix with the `new` keyword. It has very special meaning in JavaScript and invokes the `Store()` function with certain hidden behavior. This includes automatically returning an object containing anything we placed on `this`, and attaching the special `prototype` property to the returned object.
+Why? Because when we call `Store()` at the bottom, we prefix with the `new` keyword. It has very special meaning in JavaScript and invokes the `Store()` function with certain hidden behavior. This includes automatically returning an object with any properties we placed on `this` and linking the new object's prototype chain to the `Store.prototype` object.
 
-We place our prototype methods directly on the `Store.prototype` object and this now means they will be available to all `Store` "instances."
+We place our prototype methods directly on the `Store.prototype` object and this now means they will be available to all `Store` "instances."  Instances are objects created from a class.
 
 ### ES6 always has another way
 
