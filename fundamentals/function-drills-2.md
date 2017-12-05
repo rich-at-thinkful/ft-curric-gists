@@ -41,21 +41,16 @@ Use your function to decode the following message: 'craft block argon meter bell
 
 ## How many days in a month
 
-Write a function that takes the name of a month as an argument and use a switch statement to determine how many days are there in that month. For example if the parameter to the function is January, the function should display "January has 31 days". 
+Write a function that takes the name of a month as an argument and use a switch statement to log out how many days there are in that month. For example if the argument provided is `'January'`, the function should display `"January has 31 days"`. 
 
 ## Rock Paper Scissors
-In the game Rock Paper Scissors, two players simultaneously choose one of the three options: rock, paper, or scissors. If both player choose the same option, the result is a tie. Otherwise the winner is determined as follows:
-- Rock beats scissors - a rock can break a pair of scissors
-- Scissors beats paper, because scissors can cut paper
-- Paper beats rock, because a piece of paper can cover a rock
+In the game Rock Paper Scissors, two players simultaneously choose one of the three options: rock, paper, or scissors. If both players choose the same option, the result is a tie. Otherwise the winner is determined as follows:
 
-Create a game in which you are playing agaist the computer. The computer randomly chooses rock, paper, or scissors. Your function should take as an argument, 1, 2, or 3 to represent rock, paper, or scissors and determine the winner. The code for the computer to generate a random number between 1 and 3 is - 
+- Rock beats scissors
+- Scissors beats paper
+- Paper beats rock
+
+Create a game in which you are playing against the computer. The computer randomly chooses rock, paper, or scissors. Your function should take a number as an argument of `1`, `2`, or `3` to represent rock, paper, or scissors, respectively, and determine the winner. The code to generate a random number between 1 and 3 is - 
 ```js 
-function RockPaperScissors(userChoice){
-    var computer = 1 + Math.floor((Math.random()*3));
-  
-}
-
-RockPaperScissors(2);
-
+const randomNo = Math.floor(Math.random() * 3);
 ```
