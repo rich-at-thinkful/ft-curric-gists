@@ -50,6 +50,7 @@ const store = {
   currentQuestion: 1,
   totalQuestions: 5,
 
+  // Note - ES6 shorthand below for created methods:
   nextQuestion() {
     if (this.currentQuestion <= this.totalQuestions) return;
     this.currentQuestion++;
@@ -69,7 +70,6 @@ const createStore = function(totalQuestions = 5) {
     currentQuestion: 1,
     totalQuestions: totalQuestions,
 
-    // fyi: this is an es6 shorthand function
     nextQuestion() {  
       if (this.currentQuestion <= this.totalQuestions) return;
       this.currentQuestion++;
@@ -90,7 +90,7 @@ The solution for this is **inheritance**, another OOP concept. Specifically, in 
 
 >**ASIDE:** There's [long, involved reading](https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9) on the topic of **prototypal inheritance** vs **classical inheritance**, which is used in many class-oriented programming languages. Keep this in your "Read Later" materials; just know that these different types of inheritance structures exist.
 
-So, what does this mean? Every object in JavaScript exists on the **prototype chain**, which always leads back to the global `Object`. Similar to scope chain, every object can see into its parent prototype object. By having a common parent prototype, a single method can live in one place in memory, but be naturally utilized by unlimited objects derived from the prototype.
+So, what does this mean? Every object in JavaScript exists on the **prototype chain**, which always leads back to the global `Object`. Similar to scope chain, every object can see into its parent prototype object. By having a common parent prototype, a single method (or attribute) can live in one place in memory, but be naturally utilized by unlimited objects derived from the prototype.
 
 As with many things in JavaScript there are multiple syntaxes to achieve this. The first we'll look at is **constructor functions**:
 
@@ -167,7 +167,7 @@ class BankAccount {
 }
 
 const johnAccount = new BankAccount();
-johnAccount.balance = 200;  // => Would work!
+johnAccount.balance = 200;  // => This works, but we want to prevent it!
 ```
 
 In class-oriented languages, there are built-in protections for creating private data and methods. In JavaScript, there are only standards and patterns you can adopt to emulate this. We're not going to learn all of those today; instead, we'll cover one convention used that indicates to a programmer they should not touch the property directly - the underscore `_` prefix.
