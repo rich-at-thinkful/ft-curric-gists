@@ -6,38 +6,33 @@ OOP is a massive topic that includes many concepts to learn and master. The lang
 
 Let's start with the basic definition above. By now, you've had a lot of practice creating objects, mainly to hold onto some data. Regardless of the programming language, one core tenet of OOP is you have an object with data, but also functions attached to that object that read and manipulate the data.
 
-Let's take a small version of our store object we've been using for the Quiz App:
+Let's take our `store` object we've been using with the Shopping List app:
 
 ```javascript
 const store = {
-  totalQuestions: 5,
-  currentQuestion: 1
+  items: [ {}, {}, {} ],
+  checkedFilter: false,
+  searchTerm: ''
 };
 ```
 
-This is just an object with a straightforward data structure. Throughout our app, we know we're going to need to increment `currentQuestion`. In your past iterations, you may have done this directly in an event handler:
+This is just an object with a straightforward data structure. During the usage of our app, we've written functions to manipulate our `store` object, like toggling the `checkedFilter` prop:
 
 ```javascript
-store.currentQuestion++;
-```
-
-Or maybe you wrote a function to do it so it can check there are more questions before incrementing:
-
-```javascript
-function nextQuestion(store){
-  if (store.currentQuestion <= store.totalQuestions) return;
-  store.currentQuestion++;
+function toggleCheckedFilter() {
+  store.checkedFilter = !store.checkedFilter;
 }
 ```
 
+In the above example, the function **assumes** knowledge of a global `store` object, which is not a maintainable approach once our app gets larger. The functional programming pattern would have us receive an object (as an argument) to manipulate instead of assuming it globally exists.
+
 ## Context
 
-The OOP approach would be to create functions that already have the **context** of the object they need to work on, rather than have the object passed to them. You've seen this done in earlier exercises with the `this` keyword:
+Meanwhile, the OOP approach would be to create functions that already have the **context** of the object they need to work on, rather than have the object passed to them. You've seen this done in earlier exercises with the `this` keyword:
 
 ```javascript
-function nextQuestion() {
-  if (this.currentQuestion <= this.totalQuestions) return;
-  this.currentQuestion++;
+function toggleCheckedFilter() {
+  this.checkedFilter = !this.checkedFilter;
 }
 ```
 
@@ -47,43 +42,51 @@ Since this function's only real purpose is to work on `store` objects, we could 
 
 ```javascript
 const store = {
-  currentQuestion: 1,
-  totalQuestions: 5,
+  items: [ {}, {}, {} ],
+  checkedFilter: false,
+  searchTerm: '',
 
   // Note - ES6 shorthand below for created methods:
-  nextQuestion() {
-    if (this.currentQuestion <= this.totalQuestions) return;
-    this.currentQuestion++;
+  toggleCheckedFilter() {
+    this.checkedFilter = !this.checkedFilter;
   }
 };
 
-store.nextQuestion();
+store.toggleCheckedFilter();
 ```
 
 >**ASIDE:** Methods that would be appropriate for use with multiple objects can also exist. An OOP concept called **polymorphism** refers to this practice, among other things.
 
-The above works fine if our application only needs one store. What if it needed to operate multiple stores at once? This is where **factories** can come into play: a factory is a regular ol' function that builds objects:
+We only expect this app to have one `store`, but what happens when we anticipate creating many objects? In the Shopping List app, we frequently create, edit, and remove items in the list. The `item` sounds like a perfect candidate for a **factory**, which we learned about in the earlier Object drills.
 
 ```javascript
-const createStore = function(totalQuestions = 5) {
-  const store = {
-    currentQuestion: 1,
-    totalQuestions: totalQuestions,
+const createItem = function(itemName) {
+  if (!itemName) throw new TypeError('Cannot create Item: Must provide `name`');
 
-    nextQuestion() {  
-      if (this.currentQuestion <= this.totalQuestions) return;
-      this.currentQuestion++;
+  const item = {
+    // Attributes
+    name: itemName,
+    checked: false,
+    
+    // Methods
+    toggleChecked() {
+      this.checked = !this.checked;
+    },
+
+    editName(name) {
+      if (!name) throw new TypeError('Cannot edit Item: Must provide `name`');
+      this.name = name;
     }
   };
 
-  return store;
+  return item;
 }
 
-const store1 = createStore();
-const store2 = createStore(10);
+const apples = createItem('apples');
+const oranges = createItem('oranges');
 ```
 
-You've also done this in an earlier lesson. In the real world, this works but isn't optimal from a memory/performance perspective. Each store and all its properties use memory, but the `nextQuestion` function is an identical piece of code for every store.  If you have 100 stores, why would you need this same function repeated 100 times in memory?
+You've also done this in an earlier lesson. In the real world, this works but isn't optimal from a memory/performance perspective. Each `item` and all its properties use memory, but the `toggleChecked` and `editName` functions are identical pieces of code placed on each item object.  If you have 100 items, why would you need this same function repeated 100 times in memory?
 
 ### Inheritance and Prototype
 The solution for this is **inheritance**, another OOP concept. Specifically, in JavaScript, we use **prototypal inheritance**.
@@ -95,56 +98,64 @@ So, what does this mean? Every object in JavaScript exists on the **prototype ch
 As with many things in JavaScript there are multiple syntaxes to achieve this. The first we'll look at is **constructor functions**:
 
 ```javascript
-function Store(totalQuestions = 5){
-  this.currentQuestion = 1;
-  this.totalQuestions = totalQuestions;
+function Item(itemName){
+  if (!itemName) throw new TypeError('Cannot create Item: Must provide `name`');
+
+  this.name = itemName;
+  this.checked = false;
 }
 
-Store.prototype.nextQuestion = function(){
-  if (this.currentQuestion <= this.totalQuestions) return;
-  this.currentQuestion++;
-}
+Item.prototype.toggleChecked = function(){
+  this.checked = !this.checked;
+};
 
-const store = new Store();
-store.nextQuestion();
-console.log(store.currentQuestion)    // => 2
+Item.prototype.editName = function(name) {
+  if (!name) throw new TypeError('Cannot edit Item: Must provide `name`');
+  this.name = name;
+};
+
+const oranges = new Item('oranges');
+oranges.toggleChecked();
+console.log(oranges.checked)    // => 'true'
 ```
 
-There's some odd things here! First, our `Store` function has an initial capitalization. This has no inherent effect but is a *convention* in JavaScript (and most languages) when defining a class or prototype, which is the purpose of this function.
+There's some odd things here! First, our `Item` function has an initial capitalization. This has no inherent effect but is a *convention* in JavaScript (and most languages) when defining a class or prototype, which is the purpose of this function.
 
 Notice inside the function that we don't generate an object. All it's doing is assigning props to a `this` object and not returning anything.
 
-Why? Because when we call `Store()` at the bottom, we prefix with the `new` keyword. It has very special meaning in JavaScript and invokes the `Store()` function with certain hidden behavior. This includes automatically returning an object with any properties we placed on `this` and linking the new object's prototype chain to the `Store.prototype` object.
+Why? Because when we call `Item()` at the bottom, we prefix with the `new` keyword. It has very special meaning in JavaScript and invokes the `Item()` function with certain hidden behavior. This includes automatically returning an object with any properties we placed on `this` and linking the new object's prototype chain to the `Item.prototype` object.
 
-We place our prototype methods directly on the `Store.prototype` object and this now means they will be available to all `Store` "instances."  Instances are objects created from a class.
+We place our prototype methods directly on the `Item.prototype` object and this now means they will be available to all `Item` "instances."  Instances are objects created from a class.
 
 ### ES6 always has another way
 
 ES6 created some **syntactic sugar** for our function constructor above which most closely resembles how class-oriented languages build objects:
 
 ```javascript
-class Store {
+class Item {
   // This function runs when a new `store` is instantiated
-  constructor(totalQuestions = 5) {
-    this.currentQuestion = 1;
-    this.totalQuestions = totalQuestions;
+  constructor(itemName) {
+    if (!itemName) throw new TypeError('Cannot create Item: Must provide `name`');
+
+    this.name = itemName;
+    this.checked = false;
   }
 
   // All methods below are available on the Store.prototype
   // -- NOTE: with `class` syntax, you do NOT put commas between 
   // -- methods as you would in a normal object's props!
-  nextQuestion() {
-    if (this.currentQuestion <= this.totalQuestions) return;
-    this.currentQuestion++;
+  toggleChecked() {
+    this.checked = !this.checked;
   }
 
-  foo() {
-    return 'bar';
+  editName(name) {
+    if (!name) throw new TypeError('Cannot edit Item: Must provide `name`');
+    this.name = name;
   }
 }
 
-const store = new Store();
-store.nextQuestion();
+const item1 = new Item('oranges');
+item1.editName('apples');
 ```
 
 This is not really a [class](https://en.wikipedia.org/wiki/Class_(computer_programming)) how a language like Java, Ruby, or Python would define it, because JavaScript doesn't have the engine underneath for many class features. This is an emulation of how classes behave, using the native JavaScript prototype chain. 
@@ -203,7 +214,7 @@ In the above example, we have "hidden" the actual balance on a property prefixed
 
 ### Exercise
 
-Our Quiz App so far has limited code organization. Take a stab at reorganizing your code to use an object oriented approach. 
+Our Shopping List App so far has limited code organization. Let's refactor it to use a more object oriented approach.
 
 Things to keep in mind:
 
