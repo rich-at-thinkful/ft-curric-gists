@@ -168,7 +168,7 @@ Our Shopping List has been built with a lot of standalone functions and global v
 
 **IMPORTANT:** You should be starting from the project after completing the exercises in [Project Structure and Modules](modules-ids.md).
 
-Commit each step along the way!
+Commit often!
 
 #### 1. Build the Item class
 - In `Item.js`, add a `constructor` function which takes in a `name` parameter
@@ -188,7 +188,47 @@ Commit each step along the way!
   item3.toggleChecked();
   store.items.push(item1, item2, item3);
   console.log(store.items);
+  shoppingList.render();
   ```
   - We instantiated three new Items, invoked the `toggleChecked` method on `item3` and then pushed all the items into the store
   - If you built your `Item` class correctly, you should get no errors and the browser will display all items as intended.
   - You can remove this dummy data or keep it in index.js for now, so your browser renders data while testing
+
+#### 2. Update shoppingList to use Item class
+- Inside `shoppingList.js`, we need to fix our `addItemToShoppingList` function to instantiate a new `Item` instead of manually creating an object. Capture the object from invoking `new Item(itemName)` and push it into `store.items`.
+- ESLint cleanliness: Notice we're no longer using the `cuid` library inside `shoppingList`, but we are using the `Item` module. Change your global definition at the top of `shoppingList` to reflect this and you should no longer have a red underline on `Item`
+- Update `toggleCheckedForListItem` method to use the `toggleChecked` method on the `foundItem`
+- Update `editListItemName` method to use the `updateName` method on the `item`
+- Test it! 
+  - Your shopping list app in the web browser should be working as before, but now you're using methods on the `item` instance
+
+#### 3. Update store to create, update, delete items
+- Let's add methods directly to our `store` to handle related operations. We're going to be replacing these operations currently living in `shoppingList`
+- Inside `store.js`, make a `create` method, which accepts a `name` parameter, and pushes a new Item instance to `this.items` array
+- Make a `findAndToggleChecked` method, which accepts an `id`, finds the appropriate item in `this.items`, then calls `toggleChecked` on the item
+- Make a `findAndUpdateName` method, which accepts `id` and `newName` parameters, finds the appropriate item, then calls `updateName`
+- Make a `findAndDelete` method, which accepts an `id`, and then removes the item from `this.items`.  (HINT: You can use array method `.filter()` or a combination of `.findIndex()` and `.splice()`.)
+- Test it! 
+  - Load up your app and open the console, then type:
+  ```
+  store.addItem('bananas');
+  shoppingList.render();
+  ```
+  - Did bananas appear in the DOM? 
+  - Manually grab the id of the first store item in the console: `store.items[0].id` and send that `id` into `store.findAndDelete`. Run `store.render()` - did it disappear from the DOM?
+
+#### 4. Update shoppingList to use the new store methods
+- As before, update the `shoppingList` handlers to use the appropriate `store` methods and then remove the redundant methods in `shoppingList`.
+  - Remove `toggleCheckedForListItem` and update `handleItemCheckClicked` to use `store.findAndToggleChecked`
+  - Remove `deleteListItem` and update `handleDeleteItemClicked` to use `store.findAndDelete`
+  - Remove `editListItemName` and update `handleEditShoppingItemSubmit` to use `store.findAndUpdateName`
+
+#### 5. Do final modifications to the store and shoppingList
+- Let's finish our store by moving the remaining store-related functions out of `shoppingList`:
+  - Make a method in `store` called `toggleCheckedFilter` which toggles `this.hideCheckedFilter` prop
+  - Make another `store` method called `setSearchTerm` which changes `this.searchTerm` to whatever's passed in
+  - Remove `toggleCheckedItemsFilter` and `setSearchTerm` methods from `shoppingList`
+  - Update the `handleToggleFilterClick` and `handleShoppingListSearch` to use the new store methods
+  - Test that your app still works as expected!
+ 
+ Whew! That was a lot of refactoring!

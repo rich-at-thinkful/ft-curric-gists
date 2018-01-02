@@ -10,7 +10,7 @@ Our Shopping List App so far has limited code organization. Let's refactor it in
 
 **IMPORTANT:** Start from this [project repo](#).
 
-Commit each step along the way!
+Commit often!
 
 #### 1. Create a store module
 - Add a `store.js` into your `scripts` folder
