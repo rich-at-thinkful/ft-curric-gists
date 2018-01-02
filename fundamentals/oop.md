@@ -179,8 +179,6 @@ Commit each step along the way!
 - Add an `updateName` method inside the class, which takes a `name` parameter and sets `this.name` to the new value passed in
 - Add a `toggleChecked` method inside the class, which sets `this.checked` to the **opposite** of the current value
 - Inside `store.js`, remove the mock items and have `items` simply be an empty array
-- Inside `shoppingList.js`, we need to fix our `addItemToShoppingList` function to instantiate a new `Item` instead of manually creating an object: `store.items.push(new Item(itemName));`
-- ESLint cleanliness: Notice we're no longer using the `cuid` library inside `shoppingList`, but we are using the `Item` module. Change your global definition at the top of `shoppingList` to reflect this
 - Test your module!
   - At the bottom of `index.js` add the following:
   ```
