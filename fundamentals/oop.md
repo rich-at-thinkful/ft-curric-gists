@@ -172,7 +172,9 @@ Commit often!
 
 #### 1. Build the Item class
 - In `Item.js`, add a `constructor` function which takes in a `name` parameter
-- Inside the constructor, you will be creating the attributes `id`, `name`, `checked` on all object instances with the following values:
+- Inside the constructor, you will be creating the attributes `id`, `name`, `checked` on all object instances.
+- At the top of the constructor, check if `name` exists and throw an error if it doesn't with the message, "Cannot create Item. Must provide name."
+- For each attribute:
   - `id` - invoke `cuid()` to create a unique id
   - `name` - the value of parameter `name` passed into the constructor
   - `checked` - defaults to `false`
@@ -230,5 +232,12 @@ Commit often!
   - Remove `toggleCheckedItemsFilter` and `setSearchTerm` methods from `shoppingList`
   - Update the `handleToggleFilterClick` and `handleShoppingListSearch` to use the new store methods
   - Test that your app still works as expected!
- 
- Whew! That was a lot of refactoring!
+
+That was a lot of refactoring, but worth it! Let's recap the concepts applied:
+
+* Reduced the app to three global variables by using modules
+  * This reduces chances of bugs and naming conflicts
+* Used a class to encapsulate all `item`-based operations
+  * Includes validation on the object (require name to exist), preventing unnamed items at all other layers of the app
+  * All item modifications happen using item methods for maintainable code
+* Simplified the main `shoppingList` module by separating out store-related functions from event handler functions
