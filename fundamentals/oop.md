@@ -162,68 +162,35 @@ This is not really a [class](https://en.wikipedia.org/wiki/Class_(computer_progr
 
 If you haven't used class-oriented languages before this course, then these descriptions may be confusing. For now, the takeaway is that **function constructors** or the **class** syntax exist to let you *create objects with functions that can be applied to those objects.* Remember our original OOP definition at the top of this article?
 
-### Private data
-
-It's a common use case in programming that our objects will hold data we want to be more difficult to access. 
-
-For example, imagine a class for a bank account where you have a balance and want to enable withdrawals. You want to be able to read the account balance (`account.balance`), but you *don't* want the ability to **set** the balance directly (`account.balance = 50`).  Instead you want to call a withdraw method that will take care of reconciling the balance and ensuring you have the funds to withdraw (`account.withdraw(50)`).
-
-Making the `balance` property ordinarily visible means a developer could easily change that balance directly by accident. 
-
-```javascript
-class BankAccount {
-  constructor() {
-    this.balance = 100;
-  }
-}
-
-const johnAccount = new BankAccount();
-johnAccount.balance = 200;  // => This works, but we want to prevent it!
-```
-
-In class-oriented languages, there are built-in protections for creating private data and methods. In JavaScript, there are only standards and patterns you can adopt to emulate this. We're not going to learn all of those today; instead, we'll cover one convention used that indicates to a programmer they should not touch the property directly - the underscore `_` prefix.
-
-```javascript
-class BankAccount {
-  constructor() {
-    this._balance = 100;
-  }
-
-  getBalance() {
-    return this._balance;
-  }
-
-  withdraw(amount) {
-    if (amount > this._balance) {
-      throw new Error('Your balance is insufficient for that withdrawal.');
-    }
-
-    this._balance -= amount;
-  }
-}
-
-const johnAccount = new BankAccount();
-console.log(johnAccount.balance)        // => undefined
-console.log(johnAccount.getBalance())   // => 100
-johnAccount.withdraw(200);              // => Error: Your balance is insufficient...
-```
-
-In the above example, we have "hidden" the actual balance on a property prefixed with `_`, shown in the constructor as `this._balance`. JavaScript won't prevent access, but as a developer, you should know not to access data named with a prefix directly. To get the balance, we've built a `getBalance()` method that will deliver the value of the `_balance` property and there's no 'setter' method as we don't want to set the balance directly. Then our `withdraw()` method does the necessary check and changes our `_balance`.
-
->**ASIDE:** JavaScript's `class` syntax provides for special *getter/setter* methods also known as accessors, which are common in class oriented languages, but we're going to save those extra concepts for future lessons.
-
 ### Exercise
 
-Our Shopping List App so far has limited code organization. Let's refactor it to use a more object oriented approach.
+Our Shopping List has been built with a lot of standalone functions and global variables. Let's refactor it to use a more object oriented approach.
 
-Things to keep in mind:
+**IMPORTANT:** You should be starting from the project after completing the exercises in [Project Structure and Modules](modules-ids.md).
 
-- You should end the exercise with very few global variables.
-- Try to look over every function in your app and group them into categories -- each category could be a top-level object/class in your application. Examples:
-  - The API calls
-  - Template generators
-  - Rendering functions
-  - Event handlers
-- Use `class` to define blueprints for your top-level objects
-  - Expect to use a constructor for setting 1) default values or 2) values passed in when creating the object.
-- Use private attributes/methods wherever appropriate
+Commit each step along the way!
+
+#### 1. Build the Item class
+- In `Item.js`, add a `constructor` function which takes in a `name` parameter
+- Inside the constructor, you will be creating the attributes `id`, `name`, `checked` on all object instances with the following values:
+  - `id` - invoke `cuid()` to create a unique id
+  - `name` - the value of parameter `name` passed into the constructor
+  - `checked` - defaults to `false`
+- Add an `updateName` method inside the class, which takes a `name` parameter and sets `this.name` to the new value passed in
+- Add a `toggleChecked` method inside the class, which sets `this.checked` to the **opposite** of the current value
+- Inside `store.js`, remove the mock items and have `items` simply be an empty array
+- Inside `shoppingList.js`, we need to fix our `addItemToShoppingList` function to instantiate a new `Item` instead of manually creating an object: `store.items.push(new Item(itemName));`
+- ESLint cleanliness: Notice we're no longer using the `cuid` library inside `shoppingList`, but we are using the `Item` module. Change your global definition at the top of `shoppingList` to reflect this
+- Test your module!
+  - At the bottom of `index.js` add the following:
+  ```
+  const item1 = new Item('apples');
+  const item2 = new Item('oranges);
+  const item3 = new Item('milk');
+  item3.toggleChecked();
+  store.items.push(item1, item2, item3);
+  console.log(store.items);
+  ```
+  - We instantiated three new Items, invoked the `toggleChecked` method on `item3` and then pushed all the items into the store
+  - If you built your `Item` class correctly, you should get no errors and the browser will display all items as intended.
+  - You can remove this dummy data or keep it in index.js for now, so your browser renders data while testing
