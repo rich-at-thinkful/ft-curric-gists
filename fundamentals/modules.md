@@ -28,57 +28,59 @@ The only way the web browser client can know your project is split over multiple
   <script type="text/javascript" src="scripts/index.js"></script>
 ```
 
-Above, the first two lines are libraries we need for the project. The remaining lines are our two files. Note, the order is important: they are loaded into memory in sequence, so if `index.js` uses a variable declared in `shopping-list.js` then it will need to be loaded last.
+Above, the first two lines are libraries we need for the project. The remaining lines are our two files. Note, the order is important: they are loaded into memory in sequence, so if `index.js` uses a variable declared in `shopping-list.js` then it will need to be loaded last. (Your `index.js` will always be the last file loaded.)
 
 Later in the course, we will learn how to automate this process of including multiple project files using **build tools** but for now, we're going to do it manually. 
 
 ### Modules
 
-Including many JavaScript files in our `index.html` is effectively the same as all the lines being concatenated into one giant file as far as the execution runtime is concerned. This is not ideal. Remember how much [we don't like global variables](https://www.google.com/search?q=why+are+global+variables+evil+javascript)? 
+Including many JavaScript files in our `index.html` is effectively the same as all those lines of code being concatenated into one giant file as far as the browser's runtime is concerned. This is not ideal. Remember how much [we don't like global variables](https://www.google.com/search?q=why+are+global+variables+evil+javascript)? 
 
-Modules allow us to **encapsulate** all code logic related to one area of our application, keeping all the module's variables out of global scope. Libraries are good examples of a module. Note how jQuery encapsulates all its inner workings and exposes just a single variable into global scope - the `$`. 
+Modules allow us to **encapsulate** logic so that functions related to only one task don't pollute the global scope and conflict with other areas of the app. Libraries are good examples of a module. Note how jQuery encapsulates all its inner workings and exposes just a single variable into the global scope - the `$`. 
 
-JavaScript does not have the functionality of modules built in. Some libraries can emulate this, but the simplest way to accomplish it is using **closures**, which we learned about in earlier drills. To create a closure, we're going to use an immediately-invoked function expression (IIFE) -- essentially a function that exists purely to hide all its inner workings and only expose one thing back.
+JavaScript as a programming language does not inherently have modular functionality. Some libraries can emulate this, but the simplest way to accomplish it is using **closures**, which we learned about in earlier drills. To create a closure, we're going to use an immediately-invoked function expression (IIFE) -- this function is built and immediately executed, returning only variables it wants to expose.
 
 ```
 const myModule = (function(){
 
-  const privateFoo = 'this is private';
+  const secretPassword = 'abcde';
 
-  const publicFoo = 'this is public';
-
-  const publicFunc = function() {
-    console.log('A public function!');
+  const login = function(inputPassword) {
+    if (inputPassword === secretPassword) {
+      console.log('Access granted!');
+    } else {
+      console.log('Unauthorized');
+    }
   };
 
+  // The object we return is where we expose specific variables:
   return {
-    publicFoo: publicFoo,
-    publicFunc: publicFunc
+    login: login
   };
 
 }());
 ```
 
-The above code will look strange but it's actually not that complex. We declare a global variable `myModule` and capture the result of our IIFE. Inside the IIFE, we declare three variables. The first we intend to be private and unavailable outside the module. The other two are public. To make them public, we expose them by returning them in an object at the bottom of the IIFE.
+The above code will look strange but it's actually not that complex. We declare a global variable `myModule` and capture the result of our IIFE. Inside the IIFE, we declare two variables.  Then we return an object, where we assign the `login()` function as the value to a key with the same name.  So `login` is now available outside the module, while `secretPassword` is not.
 
-So anywhere else in our code, we can access specific content from our module with:
+Anywhere else in our code, we can access our module:
 
 ```
-console.log(myModule.publicFoo)   // => 'this is public'
-myModule.publicFunc()             // => 'a public function!'
-myModule.privateFoo               // => undefined
+myModule.login('foo');     // => 'Unauthorized'
+myModule.login('abcde');   // => 'Access granted'
+myModule.secretPassword;   // => undefined  (accessing a non-existent key on an object)
 ```
 
 ### Exercise
 
-Our Shopping List App so far has limited code organization. Let's refactor it into a project folder and encapsulate different modules.
+Our Shopping List App so far has limited code organization. Let's set up a file hierarchy and create modules.
 
-**IMPORTANT:** Start from this [project repo](#).
+**IMPORTANT:** Start from this [project repo](#). Do a quick study of the file structure then complete the exercises:
 
 Commit often!
 
 #### 1. Create a store module
-- Add a `store.js` into your `scripts` folder
+- Add a `store.js` in your `scripts` folder
 - Link the file from your `index.html` - remember ordering is important!
   - The shoppingList needs access to the store, so it should be linked FIRST
 - Inside `store.js`, create an IIFE whose return value is captured in a global `store` variable
