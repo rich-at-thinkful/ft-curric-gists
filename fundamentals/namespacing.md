@@ -2,7 +2,7 @@
 
 Our Shopping List has been built with a lot of standalone functions and global variables. Let's refactor it to use our modules and a  more object oriented approach.
 
-**IMPORTANT:** You should be starting from the project after completing the exercises in [Project Structure and Modules](modules-ids.md).
+**IMPORTANT:** You should be starting from the project after completing the exercises in [Project Structure and Modules](modules.md). You can use [this repo](#) as a starting place and to check your work from the previous lesson.
 
 Commit often!
 
