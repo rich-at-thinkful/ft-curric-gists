@@ -1,3 +1,5 @@
+### ARCHIVED FOR NOW: This lesson is no longer in use. Refer to [Namespacing](namespacing.md)
+
 # Object-Oriented Programming
 
 > Object-oriented programming (OOP) refers to a type of computer programming (software design) in which programmers define not only the data type of a data structure, but also the types of operations (functions) that can be applied to the data structure. - [Webopedia](https://www.webopedia.com/TERM/O/object_oriented_programming_OOP.html)
