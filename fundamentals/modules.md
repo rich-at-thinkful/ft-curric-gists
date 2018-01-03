@@ -97,11 +97,11 @@ Commit often!
 
 #### 2. Create an Item module
 - Add a 'Item.js' into your `scripts` folder
-  - Note the initial cap. This is because we're creating a **class**, which we cover in the OOP lesson
+  - Note the initial cap. This is just a convention because we're creating a namespace to hold related functions.
 - Link the file from your `index.html` - as before, ordering is important!
-  - Your store is going to use the `Item` class, so it needs to be linked FIRST
+  - Your store is going to use the `Item` object, so it needs to be linked FIRST
 - Inside `Item.js`, create an IIFE whose return value is captured in a global `Item` variable
-- Inside the IIFE: For now, just create an empty class with the following code: `class Item {}`. Then return the class on the next line: `return Item;`
+- Inside the IIFE: For now, just return an empty object.
 - Test your module! 
   - Create a variable at the top of your `Item.js` IIFE (**NOT** the top of the file): `const foo = 'bar';` 
   - At the bottom of your `index.js`, add the following lines:
@@ -109,4 +109,4 @@ Commit often!
   console.log(Item);
   console.log(foo);
   ```
-  - If everything's written correctly, you should see an empty `Item` class and get a Reference Error on `foo` because it's hidden inside the module as expected. Once finished testing, remove both the temp variable from `Item.js` and the log lines from `index.js`
+  - If everything's written correctly, you should see an empty `Item` object and get a Reference Error on `foo` because it's hidden inside the module as expected. Once finished testing, remove both the temp variable from `Item.js` and the log lines from `index.js`
