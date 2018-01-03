@@ -57,7 +57,7 @@ store.toggleCheckedFilter();
 
 >**ASIDE:** Methods that would be appropriate for use with multiple objects can also exist. An OOP concept called **polymorphism** refers to this practice, among other things.
 
-We only expect this app to have one `store`, but what happens when we anticipate creating many objects? In the Shopping List app, we frequently create, edit, and remove items in the list. The `item` sounds like a perfect candidate for a **factory**, which we learned about in the earlier Object drills.
+We only expect this app to have one `store`, but what happens when we anticipate creating many objects? In the Shopping List app, we intend to have many items in our list. The `item` sounds like a perfect candidate for a **factory**, which we learned about in the earlier Object drills.
 
 ```javascript
 const createItem = function(itemName) {
