@@ -95,9 +95,10 @@ Commit often!
   - Remove `toggleCheckedForListItem` and update `handleItemCheckClicked` to use `store.findAndToggleChecked`
   - Remove `deleteListItem` and update `handleDeleteItemClicked` to use `store.findAndDelete`
   - Remove `editListItemName` and update `handleEditShoppingItemSubmit` to use `store.findAndUpdateName`
+- Test that your app still works as expected.
 
 #### 5. Do final modifications to the store and shoppingList
-- Let's finish our store by moving the remaining store-related functions out of `shoppingList`:
+- Let's finish our store refactoring by moving the remaining store-related functions out of `shoppingList`:
   - Make a method in `store` called `toggleCheckedFilter` which toggles `this.hideCheckedFilter` prop
   - Make another `store` method called `setSearchTerm` which changes `this.searchTerm` to whatever's passed in
   - Remove `toggleCheckedItemsFilter` and `setSearchTerm` methods from `shoppingList`
@@ -108,7 +109,4 @@ That was a lot of refactoring, but worth it! Let's recap the concepts applied:
 
 * Reduced the app to three global variables by using modules
   * This reduces chances of bugs and naming conflicts
-* Used a class to encapsulate all `item`-based operations
-  * Includes validation on the object (require name to exist), preventing unnamed items at all other layers of the app
-  * All item modifications happen using item methods for maintainable code
-* Simplified the main `shoppingList` module by separating out store-related functions from event handler functions
+* Grouped logical functions to their namespaces by separating store-related functions from templating and event handler functions
