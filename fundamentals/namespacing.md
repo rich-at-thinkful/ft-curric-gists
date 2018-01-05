@@ -16,6 +16,19 @@ The four items above could have been declared in the global scope as a constant 
 
 Going beyond a simple object, the modules you created in the last exercise are actually a form of namespacing -- our `store` is a function with its own scope that was immediately invoked and then returned an object that provides limited access into that scope. This object could be called a namespace as all the attributes and methods it exposes are grouped together.
 
+### Unique Ids
+
+When we left our Shopping List app on Friday, we were managing items in our store's array by tracking the index location. This is serviceable when we're only dealing with data in memory, but becomes unmanageable when that data is persisted elsewhere. 
+
+Think of Twitter: when you post a tweet, it needs to exist long after you've closed your browser window (well, that may be debatable!). When you add the tweet, you actually contact a server somewhere that will store it in a database (i.e. persistent storage). That database has no concept of your array in memory and what index it was in, since millions of other users on their browsers and phones have their own arrays with the conflicting index values. 
+
+Enter unique identifiers. It's a common practice to assign individual data objects with a uniquely generated id, so we can move them around -- even between separate systems -- and keep track of them. Using the [cuid library](https://github.com/ericelliott/cuid) to performantly generate unique ids, we've tweaked the Shopping List app to generate one with every new item created and record that id in the DOM (instead of the array index value) to later identify the item in our store after a user interacts with it in the DOM.
+
+Open the Shopping List app in your browser and then inspect the item element. You'll see a unique string of letters and numbers in the `data-item-id` attribute of the `<li>`. 
+
+Examine the `addItemToShoppingList` function in the Shopping List module to see it implemented. 
+
+
 ### Exercise
 
 Our Shopping List has been built with a lot of standalone functions and global variables. Let's refactor it to use our modules as well as utilize a more object oriented approach.
