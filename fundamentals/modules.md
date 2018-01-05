@@ -6,7 +6,7 @@ Up until now, we've been building our app in a single JavaScript file. For real 
 
 The structure of a project can vary wildly, based on conventions and individual development team preferences. Web development can be  particularly open form given the nature of web technologies and how they've organically progressed over time. We're going to start you with a suggested structure for the Shopping List app; while there will be variations throughout the course, some organizational themes will persist.
 
-Download [this repo](#) and open the folder in your code editor. You should notice the following structure:
+Download [this repo](https://github.com/rich-at-thinkful/shopping-list-01) and open the folder in your code editor. You should notice the following structure:
 
 ```
 |_ scripts
@@ -21,7 +21,7 @@ The key difference here is we've added some folders to separate the JavaScript f
 
 The only way the web browser client can know your project is split over multiple files is to individually include them in their own `<script>` tags:
 
-```
+```html
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="scripts/shopping-list.js"></script>
@@ -40,7 +40,7 @@ Modules allow us to **encapsulate** logic so that functions related to only one 
 
 JavaScript as a programming language does not inherently have modular functionality. Some libraries can emulate this, but the simplest way to accomplish it is using **closures**, which we learned about in earlier drills. To create a closure, we're going to use an immediately-invoked function expression (IIFE) -- this function is built and immediately executed, returning only variables it wants to expose.
 
-```
+```javascript
 const myModule = (function(){
 
   const secretPassword = 'abcde';
@@ -65,7 +65,7 @@ The above code will look strange but it's actually not that complex. We declare 
 
 Anywhere else in our code, we can access our module:
 
-```
+```javascript
 myModule.login('foo');     // => 'Unauthorized'
 myModule.login('abcde');   // => 'Access granted'
 myModule.secretPassword;   // => undefined  (accessing a non-existent key on an object)
@@ -91,7 +91,7 @@ Commit often!
 - Test your module! 
   - Create a variable at the top of your `store.js` IIFE (**NOT** the top of the file): `const foo = 'bar';` 
   - At the bottom of your `index.js`, add the following lines:
-  ```
+  ```javascript
   console.log(store);
   console.log(foo);
   ```
@@ -107,7 +107,7 @@ Commit often!
 - Test your module! 
   - Create a variable at the top of your `Item.js` IIFE (**NOT** the top of the file): `const foo = 'bar';` 
   - At the bottom of your `index.js`, add the following lines:
-  ```
+  ```javascript
   console.log(Item);
   console.log(foo);
   ```

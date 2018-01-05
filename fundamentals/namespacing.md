@@ -3,7 +3,7 @@ We've learned that **scopes** control where variables are held, how long they ex
 
 Take this simple example:
 
-```
+```javascript
 const Utils = {
   MAX_RECORDS: 1000,
   multiply: function() {},
@@ -47,7 +47,7 @@ Commit often!
   - `checked` - defaults to `false`
 - Test your module!
   - Inside `index.js`, inside the DOM ready function, add the following:
-  ```
+  ```javascript
   const itemNames = [ '', 'apples', 'pears' ];
   itemNames.forEach(name => {
     try {
@@ -83,7 +83,7 @@ Commit often!
 - Make a `findAndDelete` method, which accepts an `id`, and then removes the item from `this.items`.  (HINT: You can use array method `.filter()` or a combination of `.findIndex()` and `.splice()`.)
 - Test it! 
   - Load up your app and open the console, then type:
-  ```
+  ```javascript
   store.addItem('bananas');
   shoppingList.render();
   ```
@@ -110,3 +110,4 @@ That was a lot of refactoring, but worth it! Let's recap the concepts applied:
 * Reduced the app to three global variables by using modules
   * This reduces chances of bugs and naming conflicts
 * Grouped logical functions to their namespaces by separating store-related functions from templating and event handler functions
+
