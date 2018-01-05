@@ -75,7 +75,9 @@ myModule.secretPassword;   // => undefined  (accessing a non-existent key on an 
 
 Our Shopping List App so far has limited code organization. Let's set up a file hierarchy and create modules.
 
-**IMPORTANT:** Start from this [project repo](#). Do a quick study of the file structure then complete the exercises:
+**IMPORTANT:** Start from this [project repo](#). 
+
+First, review the file structure to make sure you understand it and then review the `shopping-list.js` module, paying attention to the IIFE pattern and the returned object at the bottom, which only exposes two functions from the module. Explain out loud what is happening with your pair to solidify the concepts. Now, complete the exercises to build out some additional modules:
 
 Commit often!
 

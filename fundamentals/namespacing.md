@@ -1,6 +1,24 @@
+# Namespacing
+We've learned that **scopes** control where variables are held, how long they exist, and the nuances to how they can be visible or inaccessible. Namespacing is essentially the practice of logically grouping variables into a labeled scope. 
+
+Take this simple example:
+
+```
+const Utils = {
+  MAX_RECORDS: 1000,
+  multiply: function() {},
+  validate: function() {},
+  purge: function() {}
+};
+```
+
+The four items above could have been declared in the global scope as a constant and three function expressions. Instead, we're architecturally deciding that they're all related properties and belong grouped together in a simple object.
+
+Going beyond a simple object, the modules you created in the last exercise are actually a form of namespacing -- our `store` is a function with its own scope that was immediately invoked and then returned an object that provides limited access into that scope. This object could be called a namespace as all the attributes and methods it exposes are grouped together.
+
 ### Exercise
 
-Our Shopping List has been built with a lot of standalone functions and global variables. Let's refactor it to use our modules and a  more object oriented approach.
+Our Shopping List has been built with a lot of standalone functions and global variables. Let's refactor it to use our modules as well as utilize a more object oriented approach.
 
 **IMPORTANT:** You should be starting from the project after completing the exercises in [Project Structure and Modules](modules.md). You can use [this repo](#) as a starting place and to check your work from the previous lesson.
 
