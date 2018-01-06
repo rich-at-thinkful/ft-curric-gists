@@ -182,23 +182,23 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
   - So when the DOM is ready, we're fetching all our items, we're iterating through the response and running `store.addItem` on each, then we re-run our `render`.
   - If all's working you should see some of the test items you made now displayed in the DOM.
 
-  #### 5. Connect the Add Item event listener to our API
-  - Inside `shoppingList.js`, inside `handleNewItemSubmit`, we're going to add a call to our API before we add to our local store.
-  - Try this yourself for 15 mins before continuing.
-  - ...
-  - ...
-  - ...
-  - Here's the code you should have inserted in the appropriate place:
-  ```javascript
-  api.createItem((item) => {
-    store.addItem(item);
-    render();
-  });
-  ```
-  - Test it!
-    - Try adding an item normally in your app. Notice a slight delay now when you click "Add" as the app needs to contact a server and wait for a response before making the change to the view.
-    - Try adding an item without entering a name. Nothing should happen. Open the console and you should see a Bad Request error appearing. Open the Network tab and click on the request. You can look at the response to see the specific error message from the server.
-    - Ideally, we would have errors appear in the DOM to give the user feedback. Let's not worry about that yet.
+#### 5. Connect the Add Item event listener to our API
+- Inside `shoppingList.js`, inside `handleNewItemSubmit`, we're going to add a call to our API before we add to our local store.
+- Try this yourself for 15 mins before continuing.
+- ...
+- ...
+- ...
+- Here's the code you should have inserted in the appropriate place:
+```javascript
+api.createItem((item) => {
+  store.addItem(item);
+  render();
+});
+```
+- Test it!
+  - Try adding an item normally in your app. Notice a slight delay now when you click "Add" as the app needs to contact a server and wait for a response before making the change to the view.
+  - Try adding an item without entering a name. Nothing should happen. Open the console and you should see a Bad Request error appearing. Open the Network tab and click on the request. You can look at the response to see the specific error message from the server.
+  - Ideally, we would have errors appear in the DOM to give the user feedback. Let's not worry about that yet.
 
 #### 6. Write the updateItem() API method
 - Inside `api.js`, add an `updateItem` method that accepts `id`, `updateData`, and `callback` parameters and expose it in our object at the bottom of the IIFE
