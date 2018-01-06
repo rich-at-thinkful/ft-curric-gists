@@ -212,7 +212,7 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
   - Inside `index.js`, add in:
   ```javascript
   api.updateItem(item.id, { name: 'foobar' }, () => {
-    console.log('updated!);
+    console.log('updated!');
   });
   ```
   - If the request was well formed, you will get a 200 OK response and the callback will run and print `'updated!'`.
