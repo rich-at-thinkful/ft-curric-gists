@@ -2,7 +2,7 @@
 
 We've practiced fetching and displaying data with a few public APIs. As you've already noticed using Youtube and Github APIs, the endpoints can vary and require reviewing documentation to understand what responses you will get.
 
-A dominant choice in attempts to standardize web APIs came with the architectural pattern known as REST (REpresentational State Transfer). You're going to dig much deeper into REST during the backend part of the course, but for right now, we're going to cover the basics to implement our Shopping List app to use a backend server for storing and retrieving our items.
+A dominant choice in attempts to standardize web APIs came with the architectural pattern known as REST (REpresentational State Transfer). You're going to dig much deeper into REST during the backend part of the course, but for right now, we're going to cover the basics to implement our Shopping List app to use a backend API server for storing and retrieving our items.
 
 ### CRUD and Resources
 
@@ -112,8 +112,8 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
 - It's a good practice to simply start off making sure you can make an AJAX request and get an expected API server response.
 - Go into the `index.js` and add this to the bottom:
   ```javascript
-  $.getJSON('https://thinkful-list.api.herokuapp.com/ei-student/items', (response) => {
-    console.log(response);
+  $.getJSON('https://thinkful-list-api.herokuapp.com/ei-student/items', (response) => {
+    console.log('api response:', response);
   });
   ```
 - You should get an empty array or some old data in the console. If you get a red error message, carefully check your syntax and the error message and debug until you're able to make a successful AJAX call. Call in your Instructor/TA if you can't resolve!
@@ -137,12 +137,12 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
   ```
   - Open the app in your browser and open the console
   - You should see `'api module works!'` as the first line and `undefined` as the second. This proves your API module works, `getItems()` is an exposed method, and `BASE_URL` is private
-  - Delete this test once you're sure it works.
 
 #### 2. Write the getItems() method
 - Instead of just sending a test message into the callback, we're going to make an AJAX request and send the response back. 
 - Inside `getItems()` make a `.getJSON()` GET request to the url of `{BASE_URL}/items` and provide the `callback` as the second argument.
 - Now refresh your app and instead of logging the test message, the console should log an empty array.
+- Delete this test once you're sure it works.
 
 #### 3. Write the createItem() method
 - Make a `createItem` method that accepts `name` and `callback` parameters
@@ -190,8 +190,8 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
 - ...
 - Here's the code you should have inserted in the appropriate place:
 ```javascript
-api.createItem((item) => {
-  store.addItem(item);
+api.createItem(newItemName, (newItem) => {
+  store.addItem(newItem);
   render();
 });
 ```
@@ -211,37 +211,44 @@ api.createItem((item) => {
 - Test it!
   - Inside `index.js`, add in:
   ```javascript
-  api.updateItem(item.id, { name: 'foobar' }, () => {
-    console.log('updated!');
+  api.getItems((items) => {
+    const item = items[0];
+
+    api.updateItem(item.id, { name: 'foobar' }, () => {
+      console.log('updated!');
+    });
   });
   ```
   - If the request was well formed, you will get a 200 OK response and the callback will run and print `'updated!'`.
-  - You can verify the item's name changed as expected by using Postman to fetch the item directly from the API.
+  - You can verify the item's name changed as expected by using Postman to fetch the item directly from the API. (Or refresh your browser and the updated item should be there.)
   - Try changing the `checked` prop too. Try sending in an invalid prop. The API should send you a Bad Request response.
+  - Delete the test code when done.
 
 #### 7. Simplify the store update methods
 - Obsoleting the Item module is about to be complete! 
 - Let's remove both `findAndToggleChecked` and `findAndUpdateName` from the `store`
-- We're going to create a consolidated `findAndUpdate` method which just merges the attributes of the object received with our current store item
+- We're going to create a consolidated `findAndUpdate` method which just merges the attributes of an object received with the item in the store. 
+- Remember to fix your IIFE returned object to expose the new `findAndUpdate` method and remove the old ones!
 - Have the method accept `id` and `newData` parameters
 - First, find the item from `this.items` using the passed in `id`
 - Now use `Object.assign()` to merge the `newData` into the current found item
 - Test it!
-  - Inside `index.js`, add:
+  - Inside `index.js` **AND** inside the first `getItems` callback, add:
   ```javascript
   const item = store.items[0];
   console.log('current name: ' + item.name);
-  store.updateItem(item.id, { name: 'foobar' });
+  store.findAndUpdate(item.id, { name: 'foobar' });
   console.log('new name: ' + item.name);
   ```
   - The change should be apparent in the console.
+  - Delete the test code.
 
 #### 8. Connect the Update Event Handlers to our API
 - Inside `shoppingList.js`, modify the `handleEditShoppingItemSubmit` method
 - After you get the `id` and `newName` from the DOM, you'll need to call:
 ```javascript
 api.updateItem(id, { name: newName }, () => {
-  store.updateItem(id, { name: newName });
+  store.findAndUpdate(id, { name: newName });
   render();
 });
 ```
@@ -249,7 +256,7 @@ api.updateItem(id, { name: newName }, () => {
 ```javascript
 const item = store.findById(id);
 api.updateItem(id, { checked: !item.checked }, () => {
-  store.updateItem(id, { checked: !item.checked });
+  store.findAndUpdate(id, { checked: !item.checked });
   render();
 });
 ```
