@@ -91,7 +91,7 @@ const store = (function () {
 
 }() );
 ``` 
-- Inside `index.js` move the `store` object out and into your IIFE in `store.js` 
+- Move the `store` object out of `index.js` and into your IIFE in `store.js` 
 - Return the object from your IIFE, with the `items`, `hideCheckedItems`, `searchTerm` exposed
 - For ESLint cleanliness, remember to add/remove global variable definitions at the top of each file when they are/aren't in use. Use the cues when you see errors in your file!
 - Test your module! 
