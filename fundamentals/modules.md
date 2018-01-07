@@ -85,7 +85,12 @@ Commit often!
 - Add a `store.js` in your `scripts` folder
 - Link the file from your `index.html` - remember ordering is important!
   - The shoppingList needs access to the store, so the store.js must be linked FIRST
-- Inside `store.js`, create an IIFE whose return value is captured in a global `store` variable
+- Inside `store.js`, create an IIFE whose return value is captured in a global `store` variable:
+```javascript
+const store = (function () {
+
+}() );
+``` 
 - Inside `index.js` move the `store` object out and into your IIFE in `store.js` 
 - Return the object from your IIFE, with the `items`, `hideCheckedItems`, `searchTerm` exposed
 - For ESLint cleanliness, remember to add/remove global variable definitions at the top of each file when they are/aren't in use. Use the cues when you see errors in your file!
