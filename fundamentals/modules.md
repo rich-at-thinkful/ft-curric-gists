@@ -84,11 +84,10 @@ Commit often!
 #### 1. Create a store module
 - Add a `store.js` in your `scripts` folder
 - Link the file from your `index.html` - remember ordering is important!
-  - The shoppingList needs access to the store, so it should be linked FIRST
+  - The shoppingList needs access to the store, so the store.js be linked FIRST
 - Inside `store.js`, create an IIFE whose return value is captured in a global `store` variable
-- Move the `store` object from the `index.js` into your IIFE 
-- Declare the `items`, `hideCheckedItems`, `searchterm` as local variables
-- Refactor the old `store` object to be a returned object that references the three local variables with the same key names
+- Inside `index.js` move the `store` object out and into your IIFE in `store.js` 
+- Return the object from your IIFE, with the `items`, `hideCheckedItems`, `searchTerm` exposed
 - For ESLint cleanliness, remember to add/remove global variable definitions at the top of each file when they are/aren't in use. Use the cues when you see errors in your file!
 - Test your module! 
   - Create a variable at the top of your `store.js` IIFE (**NOT** the top of the file): `const foo = 'bar';` 
@@ -101,7 +100,7 @@ Commit often!
 
 #### 2. Create an Item module
 - Add a 'Item.js' into your `scripts` folder
-  - Note the initial cap. This is just a convention because we're creating a namespace to hold related functions.
+  - Note the initial cap. This is just a convention because this namespace will hold functions related to individual `item` objects (all lowercase).
 - Link the file from your `index.html` - as before, ordering is important!
   - Your store is going to use the `Item` object, so it needs to be linked FIRST
 - Inside `Item.js`, create an IIFE whose return value is captured in a global `Item` variable
