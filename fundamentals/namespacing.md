@@ -6,7 +6,7 @@ Take this simple example:
 ```javascript
 const Utils = {
   MAX_RECORDS: 1000,
-  multiply: function() {},
+  copy: function() {},
   validate: function() {},
   purge: function() {}
 };
@@ -24,23 +24,34 @@ Think of Twitter: when you post a tweet, it needs to exist long after you've clo
 
 Enter unique identifiers. It's a common practice to assign individual data objects with a uniquely generated id, so we can move them around -- even between separate systems -- and keep track of them. Using the [cuid library](https://github.com/ericelliott/cuid) to performantly generate unique ids, we've tweaked the Shopping List app to generate one with every new item created and record that id in the DOM (instead of the array index value) to later identify the item in our store after a user interacts with it in the DOM.
 
-Open the Shopping List app in your browser and then inspect the item element. You'll see a unique string of letters and numbers in the `data-item-id` attribute of the `<li>`. 
+Open the Shopping List app in your browser and then inspect the item element. You'll see a unique string of letters and numbers in the `data-item-id` attribute of the `<li>`:
 
-Examine the `addItemToShoppingList` function in the Shopping List module to see it implemented. 
+![Shopping Item Snapshot](images/shopping-item-id.png)
 
+You can see the implementation of using the cuid when creating new shopping items inside `addItemToShoppingList`:
+
+```javascript
+function addItemToShoppingList(itemName) {
+  store.items.push({ 
+    id: cuid(), 
+    name: itemName, 
+    checked: false 
+  });
+}
+```
 
 ### Exercise
 
 Our Shopping List has been built with a lot of standalone functions and global variables. Let's refactor it to use our modules as well as utilize a more object oriented approach.
 
-**IMPORTANT:** You should be starting from the project after completing the exercises in [Project Structure and Modules](modules.md). You can use [this repo](#) as a starting place and to check your work from the previous lesson.
+**IMPORTANT:** You **must** complete the exercises in [Project Structure and Modules](modules.md) before starting these. 
 
 Commit often!
 
 #### 1. Item factory and validator
-- In `Item.js`, declare a `validateName` function which takes `name` and `action` parameters. Throw a TypeError if `name` doesn't exist with the message: "Cannot perform {action}: Name must exist"
+- In `Item.js`, declare a `validateName` function which takes a `name`. Throw a TypeError if `name` doesn't exist with the message: "Name does not exist."
   - We'll run this validator any time we create an item or update its name to prevent items having blank names.
-- In `Item.js`, delcare a `createItem` function which will be a Factory Function. It should take a `name` parameter.
+- In `Item.js`, declare a `create` function which will be a Factory function. It should take a `name` parameter.
 - The function should return a new item object with the following attributes:
   - `id` - invoke `cuid()` to create a unique id
   - `name` - the value of parameter `name`
@@ -52,7 +63,7 @@ Commit often!
   itemNames.forEach(name => {
     try {
       Item.validateName(name);
-      store.items.push(Item.createItem(name));
+      store.items.push(Item.create(name));
     } catch(error) {
       console.log('Cannot add item: ' + error.message);
     }
@@ -62,23 +73,24 @@ Commit often!
   - Here, we setup an array of three names - one blank, the other two valid
   - We then run a function for each name in the array that uses try/catch to validate the name and then create an item with it
   - Assuming you wrote your `Item` functions correctly, you should see one error in the log and two shopping items in your DOM.
+  - Delete the test once you've seen it work.
 
-#### 2. Update shoppingList to use Item class
+#### 2. Update shoppingList to use the Item.create method
 - Inside `shoppingList.js`, we're going to use our awesome new `Item` module.
 - Modify the `addItemToShoppingList` function:
   - Open a try/catch block
-  - Inside the try block, use `Item.validateName` to validate the input, `Item.createItem` to create an item, and push the result to `store.items`
+  - Inside the try block, use `Item.validateName` to validate the input, `Item.create` to create an item, and push the result to `store.items`
+  - Then run `render()`
   - Inside the catch block, just log out 'Cannot add item: {error.message}' for now (ideally you would display errors on the DOM)
-- ESLint cleanliness: Notice we're no longer using the `cuid` library inside `shoppingList`, but we are using the `Item` module. Change your global definition at the top of `shoppingList` to reflect this and you should no longer have a red underline on `Item`
-- Update `editListItemName` method in a similar fashion to use the validator before updating the item name.
+- ESLint cleanliness: Notice we're no longer using the `cuid` library inside `shoppingList`, but we are using it in the `Item` module. Change your global definition at the top of `shoppingList` to reflect this and you should no longer have a red underline on `Item`
 - Test it! 
   - Your shopping list app in the web browser should be working as before, except now it won't add blank items and organizationally you're using functions in a different module to your event handler.
 
 #### 3. Update store to create, update, delete items
 - Let's add methods directly to our `store` to handle related operations. In most cases, we're replacing the excess logic in our `shoppingList` handlers. For practice, we recommend you write the functions from scratch and resist copy/pasting:
 - Inside `store.js`, make a `findById` method which accept an `id` parameter, then uses Array method `.find()` to return the specific item from `store.items`
-- Inside `store.js`, make an `addItem` method, which accepts a `name` parameter. Use a try/catch block and the `Item` module to validate the name, then create the item.
-- Make a `findAndToggleChecked` method, which accepts an `id`, then uses `findById()` to fetch the item and toggle its `checked` attribute
+- Inside `store.js`, make an `addItem` method, which accepts a `name` parameter. Use a try/catch block and the `Item` module to validate the name and create the item, then push it to `this.items`.
+- Make a `findAndToggleChecked` method, which accepts an `id`, then uses `this.findById()` to fetch the item and toggle its `checked` attribute
 - Make a `findAndUpdateName` method, which accepts `id` and `newName` parameters. Use a try/catch to first validate the name and then use `findById()` to fetch the item and update its name. Inside catch, log out 'Cannot update name: {error.message}'
 - Make a `findAndDelete` method, which accepts an `id`, and then removes the item from `this.items`.  (HINT: You can use array method `.filter()` or a combination of `.findIndex()` and `.splice()`.)
 - Test it! 
