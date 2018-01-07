@@ -28,7 +28,7 @@ Open the Shopping List app in your browser and then inspect the item element. Yo
 
 ![Shopping Item Snapshot](images/shopping-item-id.png)
 
-You can see the implementation of using the cuid when creating new shopping items inside `addItemToShoppingList`:
+You can see the implementation of using the cuid library when creating new shopping items inside `addItemToShoppingList`:
 
 ```javascript
 function addItemToShoppingList(itemName) {
@@ -37,6 +37,17 @@ function addItemToShoppingList(itemName) {
     name: itemName, 
     checked: false 
   });
+}
+```
+
+We also can easily grab the id from the DOM whenever we need to identify what the user clicked:
+
+```javascript
+function getItemIdFromElement(item) {
+  // `item` is the passed in event.target
+  return $(item)
+    .closest('.js-item-element')
+    .data('item-id');
 }
 ```
 
