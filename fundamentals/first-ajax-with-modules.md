@@ -1,6 +1,6 @@
 # First AJAX Project with Modules
 
-Here's a rundown of the modules you'll want to put together for the Youtube Thinkful project:
+Here's a rundown of the modules you'll want to put together for the Youtube Thinkful project. Every time you write a function, remember to test it! Write a quick test inside `index.js` on just that module's function and make sure you get the results you expect before moving on.  
 
 - Store
   - Exposes a `videos` array
