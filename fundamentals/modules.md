@@ -75,7 +75,7 @@ myModule.secretPassword;   // => undefined  (accessing a non-existent key on an 
 
 Our Shopping List App so far has limited code organization. Let's set up a file hierarchy and create modules.
 
-**IMPORTANT:** Start from this [project repo](#). 
+**IMPORTANT:** Start from this [project repo](https://github.com/rich-at-thinkful/shopping-list-01/tree/master). 
 
 First, review the file structure to make sure you understand it and then review the `shopping-list.js` module, paying attention to the IIFE pattern and the returned object at the bottom, which only exposes two functions from the module. Explain out loud what is happening with your pair to solidify the concepts. Now, complete the exercises to build out some additional modules:
 
@@ -84,7 +84,7 @@ Commit often!
 #### 1. Create a store module
 - Add a `store.js` in your `scripts` folder
 - Link the file from your `index.html` - remember ordering is important!
-  - The shoppingList needs access to the store, so the store.js be linked FIRST
+  - The shoppingList needs access to the store, so the store.js must be linked FIRST
 - Inside `store.js`, create an IIFE whose return value is captured in a global `store` variable
 - Inside `index.js` move the `store` object out and into your IIFE in `store.js` 
 - Return the object from your IIFE, with the `items`, `hideCheckedItems`, `searchTerm` exposed
