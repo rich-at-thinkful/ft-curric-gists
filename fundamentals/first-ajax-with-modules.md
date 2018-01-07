@@ -6,7 +6,7 @@ Here's a rundown of the modules you'll want to put together for the Youtube Thin
   - Exposes a `videos` array
   - Exposes a `setVideos` function that simply receives videos and sets it to `this.videos`
 - Api
-  - Declare a `BASE_URL` constant
+  - Declare a `BASE_URL` constant appropriate for the Youtube API.
   - Expose an asyncronous `fetchVideos` function, which receives a `searchTerm` and `callback`
     - The function will retrieve Youtube data, filter out only the content it needs (video title, image and link), and send that array back in the callback
 - VideoList
