@@ -1,4 +1,4 @@
-# RESTful APIs
+# Working with RESTful APIs
 
 We've practiced fetching and displaying data with a few public APIs. As you've already noticed using Youtube and Github APIs, the endpoints can vary and require reviewing documentation to understand what responses you will get.
 
