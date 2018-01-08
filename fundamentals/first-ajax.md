@@ -1,6 +1,16 @@
-# First AJAX Project with Modules
+# First AJAX Project
 
-Here's a rundown of the modules you'll want to put together for the Youtube Thinkful project. Every time you write a function, remember to test it! Write a quick test inside `index.js` on just that module's function and make sure you get the results you expect before moving on.  
+### Walkthrough without modules
+
+Let's get our app working using a simple single-file approach to focus on practicing making AJAX calls and placing the data in the DOM.
+
+Start from here: [Clone this Repo](https://github.com/rich-at-thinkful/first-ajax-no-modules)
+
+Follow the tasks in the comments inside `index.js`
+
+### Instructions with modules
+
+Once you've completed the above exercise, move on to refactoring with the reveal module pattern:
 
 - Store
   - Exposes a `videos` array
