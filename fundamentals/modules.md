@@ -38,15 +38,15 @@ Including many JavaScript files in our `index.html` is effectively the same as a
 
 Modules allow us to **encapsulate** logic so that functions related to only one task don't pollute the global scope and conflict with other areas of the app. Libraries are good examples of a module. Note how jQuery encapsulates all its inner workings and exposes just a single variable into the global scope - the `$`. 
 
-JavaScript as a programming language does not inherently have modular functionality. Some libraries can emulate this, but the simplest way to accomplish it is using **closures**, which we learned about in earlier drills. To create a closure, we're going to use an immediately-invoked function expression (IIFE) -- this function is built and immediately executed, returning only variables it wants to expose.
+JavaScript as a programming language does not inherently have modular functionality. Some libraries can emulate this, but the simplest way to accomplish it is using an immediately-invoked function expression (IIFE) -- this function is built and immediately executed, returning only variables it wants to expose.
 
 ```javascript
 const myModule = (function(){
 
-  const secretPassword = 'abcde';
+  const SECRET_PASSWORD = 'abcde';
 
   const login = function(inputPassword) {
-    if (inputPassword === secretPassword) {
+    if (inputPassword === SECRET_PASSWORD) {
       console.log('Access granted!');
     } else {
       console.log('Unauthorized');
