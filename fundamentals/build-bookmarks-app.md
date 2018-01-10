@@ -27,7 +27,7 @@ As a user:
 
 ### Process
 
-1) Before coding anything, think about your user flow. What does the initial loaded page look like?  What is each action a user can take and the corresponding DOM event?
+1) Before coding anything, think about your user flow. What does the initial loaded page look like?  What is each action a user can take and how does it affect the visual layout?
 
 2) Draw up [gray box wireframes](http://bradfrost.com/blog/post/html-wireframes/) using [MockFlow](http://mockflow.com), a free wireframing tool of your choice, or on a napkin!
 
