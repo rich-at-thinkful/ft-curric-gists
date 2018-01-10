@@ -2,7 +2,7 @@
 ## Build a Bookmarks App
 
 ### Project Overview
-Using everything you've learned over the Fundamentals section of the course, you will build an API-powered Bookmarks application that lets the user store and rate their custom web bookmarks.
+Using everything you've learned over the Fundamentals section of the course, you will build the frontend for an API-powered Bookmarks application that lets the user store and rate their custom web bookmarks.
 
 ### User Stories
 
