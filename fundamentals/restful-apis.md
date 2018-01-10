@@ -88,9 +88,9 @@ Our `data` key contains the stringified JSON. **IMPORTANT!** Notice that `data` 
 
 Download the [Postman Chrome Extension](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en). We could get along without it yesterday because we were only making GET requests. With Postman, we can send practice requests with all the other HTTP methods.
 
-![Example POST Request](images/rest-post-request-annotated.png)
-
 Open Postman, and try making a GET request to `https://thinkful-list-api.herokuapp.com/ei-student/items`. You should receive a [200 OK response](https://httpstatuses.com/200) and an empty array (or some test data if other students have reached here before you!).  Now try changing the method to POST in the dropdown in the top-left and hit Send.  You should receive a [400 Bad Request response](https://httpstatuses.com/400) with a message on why your request wasn't accepted. 
+
+![Example POST Request](images/rest-post-request-annotated.png)
 
 You need to send a request body in JSON format that contains a "name" key and some value.  Click on the "Body" tab, the "raw" radio button, then "application/json" in the dropdown.  In the editor, type in the JSON object below.  (Remember, JSON *requires* that the object key be enclosed in double quotation marks.)
 
