@@ -38,10 +38,40 @@ Including many JavaScript files in our `index.html` is effectively the same as a
 
 Modules allow us to **encapsulate** logic so that functions related to only one task don't pollute the global scope and conflict with other areas of the app. Libraries are good examples of a module. Note how jQuery encapsulates all its inner workings and exposes just a single variable into the global scope - the `$`. 
 
-JavaScript as a programming language does not inherently have modular functionality. Some libraries can emulate this, but the simplest way to accomplish it is using an immediately-invoked function expression (IIFE) -- this function is built and immediately executed, returning only variables it wants to expose.
+JavaScript as a programming language does not inherently have modular functionality. Some libraries can emulate this, but the simplest way to accomplish it is to simply use a function to make a module! Look at this example:
 
 ```javascript
-const myModule = (function(){
+const FooModule = function(){
+  const SECRET_PASSWORD = 'abcde';
+
+  const login = function(inputPassword) {
+    if (inputPassword === SECRET_PASSWORD) {
+      console.log('Access granted!');
+    } else {
+      console.log('Unauthorized');
+    }
+  };
+
+  // The object we return is where we expose specific variables:
+  return {
+    login: login
+  };
+});
+
+const fooModule = FooModule();
+fooModule.login('wrong password');  // => Unauthorized
+fooModule.login('abcde');           // => Access granted
+fooModule.SECRET_PASSWORD;          // => undefined
+```
+
+First we declare a `FooModule` function and then we invoke it and capture the return value at `fooModule`.  This capitalization convention of initial uppercase vs initial lowercase is often used when we create something from a "blueprint". Inside our `FooModule` function, we declare two variables `SECRET_PASSWORD` and `login`. We return an object at the bottom with a key name matching the value on our `login` function.  This means only the `login` function will be **exposed**, while the `SECRET_PASSWORD` will be inaccessible.  We've created a module with one public method and kept all variables out of global scope!
+
+### Getting IIFE (pronounced: "iffy")
+
+There's a slightly shorthand way of writing the above using Immediately Invoked Function Expressions (IIFE), which can look a little confusing but it's a prevalent pattern in many JavaScript codebases:
+
+```javascript
+const fooModule = (function(){
 
   const SECRET_PASSWORD = 'abcde';
 
@@ -61,15 +91,8 @@ const myModule = (function(){
 }());
 ```
 
-The above code will look strange but it's actually not that complex. We declare a global variable `myModule` and capture the result of our IIFE. Inside the IIFE, we declare two variables.  Then we return an object, where we assign the `login()` function as the value to a key with the same name.  So `login` is now available outside the module, while `secretPassword` is not.
+There's a lot of punctuation in there but it's not that complex. Instead of declaring a `FooModule` variable and then later invoking it, we *declare and immediately invoke* the blueprint function and capture it into the final target variable. The result is the same and we still have a `fooModule` where we can access our `login` method, like so: `fooModule.login()`.
 
-Anywhere else in our code, we can access our module:
-
-```javascript
-myModule.login('foo');     // => 'Unauthorized'
-myModule.login('abcde');   // => 'Access granted'
-myModule.secretPassword;   // => undefined  (accessing a non-existent key on an object)
-```
 
 ### Exercise
 
