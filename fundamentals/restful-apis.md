@@ -33,7 +33,7 @@ Above, we list several [HTTP Methods](https://developer.mozilla.org/en-US/docs/W
 
 ### The Request Body
 
-Since we've only used the GET request so far, we haven't needed to cover request bodies. HTTP requests are comprised of a request **header** and a request **body**.  Like an object, HTTP headers just contain a bunch of key-value pairs, but it's here where we send information like the HTTP method and what data type we accept and send (e.g. HTML, JSON, XML, etc.).  When we make requests that create or update data using methods like POST, PUT, and PATCH, we will typically send a **body** with the request that contains our data.  The body can be in many formats, but we're only using JSON in our Shopping List.
+Since we've only used the GET request so far, we haven't needed to cover request bodies. HTTP requests are comprised of request **headers** and a request **body**.  Like an object, HTTP headers just contain a bunch of key-value pairs, but it's here where we send information like what data type we accept and send (e.g. HTML, JSON, XML, etc.), authorization credentials, etc.  When we make requests that create or update data using methods like POST, PUT, and PATCH, we will typically send a **body** with the request that contains our data.  The body can be in many formats, but we're only using JSON in our Shopping List.
 
 ### Beyond getJSON
 
@@ -41,7 +41,7 @@ So far, we've used a single jQuery method to make AJAX requests with `getJSON()`
 
 ```javascript
 // With getJSON()
-$.getJSON('http://example.api.com/videos?part=snippet', (data) => {
+$.getJSON('http://example.api.com/videos', { part: 'snippet' }, (data) => {
   console.log(data)
 });
 
@@ -82,7 +82,7 @@ $.ajax({
 
 First, we build our blob of data to include in our **request body**, and manually convert from an object to JSON string using `JSON.stringify()`. Then we make our AJAX request. We must include `contentType: 'application/json'` (based on [MIME Media Type standards](https://www.ietf.org/rfc/rfc4627.txt) to indicate in our request that we're **sending** JSON data).  The `dataType: 'json'` is only an indicator that we accept **receipt** of JSON. 
 
-Our `data` key contains the stringified JSON. **IMPORTANT!** Notice that `data` is used differently than in our GET request. In the GET request, data is converted into the query string in our request's url. In the POST request, the content in `data` is going into the request body. This may seem strange, but it's a choice made by the jQuery library because GET requests cannot contain request bodies and POST requests often don't use query strings. 
+Our `data` key contains the stringified JSON. **IMPORTANT!** Notice that `data` is used differently than in our GET request. In the GET request, data is converted into the query string in our request's url. (e.g. `{ part: 'snippet' }` is converted to `?part=snippet` and appended to the URL.)  In the POST request, the content in `data` is going into the request body. This may seem strange, but it's a choice made by the jQuery library because GET requests cannot contain request bodies and POST requests often don't use query strings. 
 
 ### Friendly neighborhood Postman
 
