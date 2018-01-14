@@ -86,3 +86,11 @@ rocksWarning('Centinela Ave and Olympic Blvd');
 * Use the `filter` method to remove any items where the turtle moves backwards or to the right (i.e. where either the first of second number is an item is negative).
 * Use the `map` method to create a new array containing how many steps the turtle makes in total with each movement (i.e. the first and second number added together).
 * Use the `forEach` method to log out how many steps the turtle took in each case.
+
+## `reduce`
+
+* Use the reduce function to iterate through an array and construct a decoded sentence (string) based on the following criteria:
+  * If the array element is exactly three characters in length, add a space character to your accumulator
+  * Otherwise, capitalize the LAST character of the array element and add it to your accumulator
+* Your input is `'noggin oreo the moon time tele steed his tent apollo her lives though shoo tofu budapest'`
+  * Your function will need to convert it to an array of words before using `.reduce()`
