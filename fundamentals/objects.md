@@ -34,10 +34,10 @@
 * Adjust the message so that people with no boss display `"${title} ${name} doesn't report to anybody."` - for example, `Founder John doesn't report to anybody.`
 
 ## 6. Cracking the code
-* Redo your [Cracking the Code](https://gist.github.com/tparveen/76e0a6042fc6e0f02a2f7e0c56994715#cracking-the-code) problem from String Drills but this time use an object as your cipher. Additionally, instead of having the function accept a single word, have the function accept a single string of words, and then return the fully decoded message.
+* Redo your [Cracking the Code](function-drills-2.md#cracking-the-code) problem from String Drills but this time use an object as your cipher. Additionally, instead of having the function accept a single word, have the function accept a single string of words, and then return the fully decoded message.
 
 ## 7. Factory Functions with LOTR
-*  Write a factory function called `createCharacter` (review in [this assignment](https://courses.thinkful.com/fewd-001v6/assignment/2.6.4)) that could appropriately build characters from LOTR that have the following attributes:
+*  Write a factory function called `createCharacter` (review in [this assignment](https://courses.thinkful.com/web-dev-001v1/assignment/2.6.4)) that could appropriately build characters from LOTR that have the following attributes:
 
 ```
 ===============================================================================================
