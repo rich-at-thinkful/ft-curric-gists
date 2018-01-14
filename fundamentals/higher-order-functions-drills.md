@@ -94,3 +94,4 @@ rocksWarning('Centinela Ave and Olympic Blvd');
   * Otherwise, capitalize the LAST character of the array element and add it to your accumulator
 * Your input is `'noggin oreo the moon time tele steed his tent apollo her lives though shoo tofu budapest'`
   * Your function will need to convert it to an array of words before using `.reduce()`
+* **HINT**: When you invoke `reduce()` you will need to set the `initialValue` parameter to an empty string so that future iterations can concatenate more string characters 
