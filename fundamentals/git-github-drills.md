@@ -8,7 +8,7 @@ This creates an "alias" so that the command `git lg` will actually translate to 
 
 ## Git and Github Drills
 
-Each driver should be working on their own local machine. When the driver changes, toggle ScreenHero so that the new driver is sharing their screen. Do not stay on the same person's machine throughout and just "hand over controls" when drivers change.
+Each driver should be working on their own local machine. When the driver changes, switch out the screenshare so that the new driver is sharing their screen. Do not stay keep focus on one person's machine throughout the assignment and just "hand over controls" when drivers change.
 
 ### Stage 1: Push and Pull
 
