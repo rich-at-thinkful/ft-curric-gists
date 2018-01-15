@@ -86,7 +86,7 @@ Each driver should be working on their own local machine. When the driver change
         - `git push origin nav-styles`
 
 8. First Driver:
-    - Pull the latest `master` branch. Notice: nothing's changed! The last push was made to a different branch. You could pull this down, but let's assume this work wasn't finished yet and you need to start working on your own styles file!
+    - Pull the latest `master` branch. Notice: nothing's changed! The last push was made to a different branch. You could pull this down, but let's assume this work wasn't finished yet and you need to start working on your own file!
     - Checkout to a new branch called "add-javascript"
     - Create a new file: `app.js`
     - On the first line, declare a `myTeam` variable set to a string with both your names.
