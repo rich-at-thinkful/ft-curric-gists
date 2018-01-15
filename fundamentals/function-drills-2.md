@@ -20,6 +20,8 @@ Write a function called `beyond` which takes a single argument, `num` and logs a
 * If `num` is finite and negative it should log out 'To negative infinity'.
 * If `num` is zero it should log out 'Staying home'.
 
+Try the same function with a switch statement.
+
 ## Cracking the code
 
 A code has been invented which replaces each character in a sentence with a five letter word.  The first letter of each encoded word determines which of the remaining four characters contains the decoded character according to this table:
