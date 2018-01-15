@@ -14,11 +14,11 @@ Each driver should be working on their own local machine. When the driver change
 
 1. First driver begins:
     - Create a new local directory and add a `README.md` file
-    - Initialize the local Github repository
+    - Initialize the local Git repository
         - `git init`
-    - Create a Github repository on your own account called `test_repo`.
+    - Create a remote Github repository under your Github account called `test_repo`.
     - Follow [these instructions](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/) to add a remote, commit, and push your repo to GitHub.
-    - Add your partner's Github username as a collaborator on the repo at http://github.com/username/repo-name/settings/collaboration.
+    - Add your partner's Github username as a collaborator on the repo at http://github.com/[username]/test_repo/settings/collaboration. (Change [username] to your own.)
 
 2. Second driver takes over:
     - Clone the shared repo
