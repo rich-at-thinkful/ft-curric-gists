@@ -64,3 +64,14 @@ distances = movements.map(movement => movement[0] + movement[1]);
 distances.forEach(distance => {
     console.log(distance);
 });
+
+// reduce
+const input = 'noggin oreo the moon time tele steed his tent apollo her lives though shoo tofu budapest';
+const decoded = input
+    .split(' ')
+    .reduce((decodedString, word) => {
+        if (word.length === 3) return decodedString + ' ';
+
+        return decodedString + word[word.length - 1].toUpperCase();
+    }, '');
+console.log(decoded);
