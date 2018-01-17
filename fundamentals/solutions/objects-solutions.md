@@ -214,3 +214,33 @@ const findOne = function(arr, query) {
   return null;
 };
 ```
+## 8a. Bonus Database Method
+
+Same `findOne` solution as above, except we loop through `this.store.heroes` and place the function on the `Database` object.
+
+```js
+const Database = {
+  store: {
+    heroes: [ /* {}, {}, {} */ ]
+  },
+
+  findOne: function(query) {
+    for (const hero of this.store.heroes) {
+      let assumeMatch = true;
+
+      for (const key in query) {
+        if (query[key] !== hero[key]) {
+          assumeMatch = false;
+          break;
+        }
+      }
+      
+      if (!assumeMatch) continue;
+      
+      return hero;
+    }
+
+    return null;
+  }
+};
+```
