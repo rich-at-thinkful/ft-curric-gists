@@ -99,10 +99,10 @@ const HEROES = [
 
 Write a function `findOne()` that takes in the following two arguments:
 
-1. `arr` - array of Avenger objects to search through
-2. `query` - object with one or more key/value pairs that must exactly match the target Avenger
+1. `arr` - array of Heroes objects to search through
+2. `query` - object with one or more key/value pairs that must exactly match the target Hero
 
-Only one result should be returned even if multiple match. If a match isn't found, return `null`
+The first matching result should be returned even if multiple match. If a match isn't found, return `null`
 
 With the above data set, you should be able to call `findOne` with the arguments shown below and return the following results:
 
