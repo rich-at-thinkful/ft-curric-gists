@@ -41,7 +41,21 @@ Use your function to decode the following message: 'craft block argon meter bell
 
 ## How many days in a month
 
-Write a function that takes the name of a month as an argument and use a switch statement to log out how many days there are in that month. For example if the argument provided is `'January'`, the function should display `"January has 31 days"`. 
+Write a function that takes the arguments `month` (string) and `leapYear` (boolean, optional) and use a switch statement to return a sentence explaining how many days there are in that month. 
+
+For example if the argument provided is `'January'`, the function should return `"January has 31 days"`. For February, it should return the appropriate 29 for leap years and 28 for non-leap. If the string doesn't match a valid month, throw an error with the message: `'Must provide a valid month.'`
+
+**HINT:** If you have cases that return the same result, you can use `switch`'s fallthrough behavior to provide one block of code for many cases. E.g.:
+
+```js
+switch(name) {
+  case 'rich':
+  case 'robert':
+  case 'ronald':
+    result = 'All names begin with R!'; 
+    break;
+}
+```
 
 ## Rock Paper Scissors
 In the game Rock Paper Scissors, two players simultaneously choose one of the three options: rock, paper, or scissors. If both players choose the same option, the result is a tie. Otherwise the winner is determined as follows:
@@ -50,7 +64,9 @@ In the game Rock Paper Scissors, two players simultaneously choose one of the th
 - Scissors beats paper
 - Paper beats rock
 
-Create a game in which you are playing against the computer. The computer randomly chooses rock, paper, or scissors. Your function should take a number as an argument of `1`, `2`, or `3` to represent rock, paper, or scissors, respectively, and determine the winner. The code to generate a random number between 1 and 3 is - 
+Create a game in which you are playing against the computer. The computer randomly chooses rock, paper, or scissors. Your function should take a number as an argument of `1`, `2`, or `3` to represent rock, paper, or scissors, respectively, and determine the winner. If you enter anything other than a number between 1-3, throw an error.
+
+The code to generate a random number between 1 and 3 is - 
 ```js 
-const randomNo = Math.floor(Math.random() * 3);
+const randomNo = Math.floor(Math.random() * 3) + 1;
 ```
