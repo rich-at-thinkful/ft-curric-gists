@@ -67,6 +67,7 @@ Commit often!
   - `id` - invoke `cuid()` to create a unique id
   - `name` - the value of parameter `name`
   - `checked` - defaults to `false`
+- Return both `validateName` and `create` functions in your IIFE return object. These are now public methods.
 - Test your module!
   - Inside `index.js`, inside the DOM ready function, add the following:
   ```javascript
@@ -104,6 +105,7 @@ Commit often!
 - Make a `findAndToggleChecked` method, which accepts an `id`, then uses `this.findById()` to fetch the item and toggle its `checked` attribute
 - Make a `findAndUpdateName` method, which accepts `id` and `newName` parameters. Use a try/catch to first validate the name and then use `findById()` to fetch the item and update its name. Inside catch, log out 'Cannot update name: {error.message}'
 - Make a `findAndDelete` method, which accepts an `id`, and then removes the item from `this.items`.  (HINT: You can use array method `.filter()` or a combination of `.findIndex()` and `.splice()`.)
+- Add all of these new functions to the IIFE's return object. These are all public methods.
 - Test it! 
   - Load up your app and open the console, then type:
   ```javascript
@@ -123,7 +125,7 @@ Commit often!
 #### 5. Do final modifications to the store and shoppingList
 - Let's finish our store refactoring by moving the remaining store-related functions out of `shoppingList`:
   - Make a method in `store` called `toggleCheckedFilter` which toggles `this.hideCheckedFilter` prop
-  - Make another `store` method called `setSearchTerm` which changes `this.searchTerm` to whatever's passed in
+  - Make another `store` method called `setSearchTerm` which changes `this.searchTerm` to the first argument passed in
   - Remove `toggleCheckedItemsFilter` and `setSearchTerm` methods from `shoppingList`
   - Update the `handleToggleFilterClick` and `handleShoppingListSearch` to use the new store methods
   - Test that your app still works as expected!
