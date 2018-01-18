@@ -21,9 +21,9 @@ As a user:
 
 * I can remove bookmarks from my bookmark list
 
-* I can edit the rating and description of a bookmark in my list
-
 * I can select from a dropdown a "minimum rating" to filter the list by all bookmarks rated above the chosen selection
+
+* (Extension) I can edit the rating and description of a bookmark in my list
 
 ### Process
 
