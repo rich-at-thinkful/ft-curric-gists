@@ -124,7 +124,7 @@ Commit often!
 
 #### 5. Do final modifications to the store and shoppingList
 - Let's finish our store refactoring by moving the remaining store-related functions out of `shoppingList`:
-  - Make a method in `store` called `toggleCheckedFilter` which toggles `this.hideCheckedFilter` prop
+  - Make a method in `store` called `toggleCheckedFilter` which toggles `this.hideCheckedItems` prop
   - Make another `store` method called `setSearchTerm` which changes `this.searchTerm` to the first argument passed in
   - Remove `toggleCheckedItemsFilter` and `setSearchTerm` methods from `shoppingList`
   - Update the `handleToggleFilterClick` and `handleShoppingListSearch` to use the new store methods
