@@ -110,9 +110,17 @@ This walkthrough was to demonstrate the usefulness of an API debugging tool like
 
 Let's take what we've learned in our practice with APIs and today's reading to convert our Shopping List to use a backend API and persistently store our data. 
 
-* Start from this Repo: [Shopping List on store-solution branch](https://github.com/rich-at-thinkful/shopping-list-01/tree/store-solution)
-  * You should already have this repo from your earlier exercises
-  * You need to explicity pull the `store-solution` branch, then checkout to your own branch from this starting point
+Start from this Repo: [Shopping List on store-solution branch](https://github.com/rich-at-thinkful/shopping-list-01/tree/store-solution)
+* Clone the Shopping List repo to a new folder:
+  - `git clone https://github.com/rich-at-thinkful/shopping-list-01.git shopping-list-api-day`
+* Move into the project directory, then you will need to explicitly pull the `store-solution` branch
+  - `git pull origin store-solution`
+  - `git checkout store-solution`
+* Create and checkout to a new branch. This is where you will work on today's exercises:
+  - `git checkout -b api`
+* Create a new repo in the Cohort Organization then set the origin url to your new repo:
+  - `git remote set-url origin [your repo address]`
+  - `git push -u origin api`
 
 Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list-api.herokuapp.com).
 
