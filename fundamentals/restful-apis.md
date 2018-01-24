@@ -110,6 +110,10 @@ This walkthrough was to demonstrate the usefulness of an API debugging tool like
 
 Let's take what we've learned in our practice with APIs and today's reading to convert our Shopping List to use a backend API and persistently store our data. 
 
+* Start from this Repo: [Shopping List on store-solution branch](https://github.com/rich-at-thinkful/shopping-list-01/tree/store-solution)
+  * You should already have this repo from your earlier exercises
+  * You need to explicity pull the `store-solution` branch, then checkout to your own branch from this starting point
+
 Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list-api.herokuapp.com).
 
 #### 1. Test an AJAX call to our API
