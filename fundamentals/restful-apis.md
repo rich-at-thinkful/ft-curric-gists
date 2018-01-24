@@ -145,7 +145,7 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
 - Test it!
   - Inside `index.js`, add the following:
   ```javascript
-  api.getItems('apples', function(data) {
+  api.getItems(function(data) {
     console.log(data);
   });
 
