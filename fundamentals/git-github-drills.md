@@ -82,6 +82,7 @@ Each driver should be working on their own local machine. When the driver change
     - Create a new file: `nav.css`
     - Add a style for `ul` elements that sets `list-style-type` to `none`
     - Modify the `index.html` so that it includes the new css file (you need to make an additional `<link>` tag)
+    - Inside `index.html`, change the `<h1>` tag to say `<h1>My App with Nav Styles</h1>`
     - To push the new branch, you'll need to change your `git push` command (do this AFTER the usual checks and commits):
         - `git push origin nav-styles`
 
@@ -114,9 +115,10 @@ Each driver should be working on their own local machine. When the driver change
         - `git pull origin master`
     - Uh oh, there have been changes! Well, we still need to merge our new code...
         - `git merge add-javascript`
-    - Well, you got conflicts in your `index.html`! Open the file in your code editor and resolve them. You need to review the areas between `>>>>>> HEAD` and `<<<<<< add-javascript`. Looks like there's two versions of the `<h1>` and you'll need to resolve which one to keep! Keep only the line you want and then remove those ugly `<<<` and `>>>` marker lines to let git know you've resolved all conflicts.
-    - Stage and commit your changes
-    - Now try to merge again and all should be well
+    - Well, you got conflicts in your `index.html`! Open the file in your code editor and resolve them. You need to review the areas between `<<<<<<< HEAD` and `>>>>>>> add-javascript`. Looks like there's two versions of the `<h1>` and neither are ideal. Modify one of the lines to incorporate the correct heading of "My App with Nav Styles and Scripts". Also, make sure to remove those ugly `<<<` and `>>>` marker lines to let git know you've resolved all conflicts.
+    - Stage your changes and run `git commit` without a message
+    - Exit the editor (probably `:q` for VIM) with the default message
+    - `git status` should show a clean working tree
     - Delete your `add-javascript` branch. It's served its purpose.
 
 For the final exercise, we're going to look at the core feature of Github as a collaboration tool: pull requests.
