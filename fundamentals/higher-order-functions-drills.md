@@ -77,7 +77,7 @@ rocksWarning('Centinela Ave and Olympic Blvd');
 // Invoke the other hazard creators you instantiated, too
 ```
 
-**Bonus credit!** Can you figure out how to log out `"time"` for a value of `1` and `"times"` for a value of `0` or `> 2`?
+**Bonus credit!** Can you figure out how to log out `"time"` for a value of `1` and `"times"` for a value of `0` or `>= 2`?
 
 ## `forEach`, `filter` and `map`
 
