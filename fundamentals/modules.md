@@ -6,7 +6,14 @@ Up until now, we've been building our app in a single JavaScript file. For real 
 
 The structure of a project can vary wildly, based on conventions and individual development team preferences. Web development can be  particularly open form given the nature of web technologies and how they've organically progressed over time. We're going to start you with a suggested structure for the Shopping List app; while there will be variations throughout the course, some organizational themes will persist.
 
-Download [this repo](https://github.com/rich-at-thinkful/shopping-list-01) and open the folder in your code editor. You should notice the following structure:
+Follow these startup instructions:
+
+* Clone [this repo](https://github.com/rich-at-thinkful/shopping-list-01) to your local machine and change directory into the new folder
+* Create a new Repo in your Thinkful organization `module-exercises-[your-names]` and copy the Git URL to your clipboard
+* Change the `origin` URL of your local repo to your new Thinkful cohort org's repo:
+  * `git remote set-url origin [your-repo-url]
+
+Now open your repo in your code editor and study the file hierarchy:
 
 ```
 |_ scripts
