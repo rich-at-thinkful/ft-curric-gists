@@ -9,9 +9,12 @@ The structure of a project can vary wildly, based on conventions and individual 
 Follow these startup instructions:
 
 * Clone [this repo](https://github.com/rich-at-thinkful/shopping-list-01) to your local machine and change directory into the new folder
-* Create a new Repo in your Thinkful organization `module-exercises-[your-names]` and copy the Git URL to your clipboard
+* On Github.com, create a new repo in your Thinkful Cohort organization `module-exercises-[your-names]` and copy the clone URL to your clipboard
 * Change the `origin` URL of your local repo to your new Thinkful cohort org's repo:
   * `git remote set-url origin [your-repo-url]
+* Verify the new remote is setup and then push to your new repo:
+  * `git remote -v` - you should see the URL of your personal repo
+  * `git push origin master`
 
 Now open your repo in your code editor and study the file hierarchy:
 
