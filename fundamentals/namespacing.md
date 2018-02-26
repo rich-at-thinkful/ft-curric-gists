@@ -113,7 +113,7 @@ Commit often!
   shoppingList.render();
   ```
   - Did bananas appear in the DOM? 
-  - Manually grab the id of the first store item in the console: `store.items[0].id` and send that `id` into `store.findAndDelete`. Run `store.render()` - did it disappear from the DOM?
+  - Manually grab the id of the first store item in the console: `store.items[0].id` and send that `id` into `store.findAndDelete`. Run `shoppingList.render()` - did it disappear from the DOM?
 
 #### 4. Update shoppingList to use the new store methods
 - As before, update the `shoppingList` handlers to use the appropriate `store` methods and then remove the redundant methods in `shoppingList`.
