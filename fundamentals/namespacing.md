@@ -106,7 +106,7 @@ Commit often!
 
 #### 3. Update store to create, update, delete items
 
-*Objective:* Put all store-related functions currently in the Shopping List module into the Store module (appropriately namespaced!)
+*Objective:* Write all item-related CRUD functions in the Store module (the appropriate namespace for these methods)
 
 - Let's add methods directly to our `store` to handle related operations. In most cases, we're replacing the excess logic in our `shoppingList` handlers. For practice, we recommend you write the functions from scratch and resist copy/pasting:
 - Inside `store.js`, make a `findById` method which accept an `id` parameter, then uses Array method `.find()` to return the specific item from `store.items`
