@@ -60,6 +60,9 @@ Our Shopping List has been built with a lot of standalone functions and global v
 Commit often!
 
 #### 1. Item factory and validator
+
+*Objective:* Build an Item module that contains functions to validate and create items.
+
 - In `Item.js`, declare a `validateName` function which takes a `name`. Throw a TypeError if `name` doesn't exist with the message: "Name does not exist."
   - We'll run this validator any time we create an item or update its name to prevent items having blank names.
 - In `Item.js`, declare a `create` function which will be a Factory function. It should take a `name` parameter.
@@ -88,6 +91,9 @@ Commit often!
   - Delete the test once you've seen it work.
 
 #### 2. Update shoppingList to use the Item.create method
+
+*Objective:* Wire up our Item methods to be used by our Shopping List module.
+
 - Inside `shoppingList.js`, we're going to use our awesome new `Item` module.
 - Modify the `addItemToShoppingList` function:
   - Open a try/catch block
@@ -99,6 +105,9 @@ Commit often!
   - Your shopping list app in the web browser should be working as before, except now it won't add blank items and organizationally you're using functions in a different module to your event handler.
 
 #### 3. Update store to create, update, delete items
+
+*Objective:* Put all store-related functions currently in the Shopping List module into the Store module (appropriately namespaced!)
+
 - Let's add methods directly to our `store` to handle related operations. In most cases, we're replacing the excess logic in our `shoppingList` handlers. For practice, we recommend you write the functions from scratch and resist copy/pasting:
 - Inside `store.js`, make a `findById` method which accept an `id` parameter, then uses Array method `.find()` to return the specific item from `store.items`
 - Inside `store.js`, make an `addItem` method, which accepts a `name` parameter. Use a try/catch block and the `Item` module to validate the name and create the item, then push it to `this.items`.
@@ -116,6 +125,9 @@ Commit often!
   - Manually grab the id of the first store item in the console: `store.items[0].id` and send that `id` into `store.findAndDelete`. Run `shoppingList.render()` - did it disappear from the DOM?
 
 #### 4. Update shoppingList to use the new store methods
+
+*Objective:* Update our Shopping List event listeners to use our namespaced store methods, and remove any of the now obsolete store-modification functions from Shopping List
+
 - As before, update the `shoppingList` handlers to use the appropriate `store` methods and then remove the redundant methods in `shoppingList`.
   - Remove `toggleCheckedForListItem` and update `handleItemCheckClicked` to use `store.findAndToggleChecked`
   - Remove `deleteListItem` and update `handleDeleteItemClicked` to use `store.findAndDelete`
@@ -123,6 +135,9 @@ Commit often!
 - Test that your app still works as expected.
 
 #### 5. Do final modifications to the store and shoppingList
+
+*Objective:* Move all remaining store functions out of Shopping List and into the Store namespace, and wire up the event listeners to use the new namespaced functions.
+
 - Let's finish our store refactoring by moving the remaining store-related functions out of `shoppingList`:
   - Make a method in `store` called `toggleCheckedFilter` which toggles `this.hideCheckedItems` prop
   - Make another `store` method called `setSearchTerm` which changes `this.searchTerm` to the first argument passed in
