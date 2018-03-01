@@ -136,6 +136,9 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
 - Once tested, delete this code.
 
 #### 2. Create an API module
+
+*Objective:* Create a new module to handle all the API calls your application will make. These will all be async functions responsible only for returning responses.
+
 - Create a new `api.js` file and as before, make an IIFE that is captured by a global `api` variable. 
 - In your `index.html`, link in the `api.js` script, making sure to do it before your `index.js`
 - Inside the IIFE, declare a `BASE_URL` constant containing `https://thinkful-list-api.herokuapp.com/[yourname]`. (Replace [yourname] with your own -- the API will keep all items under this name separate from others.) 
@@ -155,12 +158,18 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
   - You should see `'api module works!'` as the first line and `undefined` as the second. This proves your API module works, `getItems()` is an exposed method, and `BASE_URL` is private
 
 #### 2. Write the getItems() method
+
+*Objective*: This method will GET request on `/items` and return the response in the callback.
+
 - Instead of just sending a test message into the callback, we're going to make an AJAX request and send the response back. 
 - Inside `getItems()` make a `.getJSON()` GET request to the url of `{BASE_URL}/items` and provide the `callback` as the second argument.
 - Now refresh your app and instead of logging the test message, the console should log an empty array.
 - Delete this test once you're sure it works.
 
 #### 3. Write the createItem() method
+
+*Objective*: This method will POST request on `/items`, sending JSON in the request body, and return the response in the callback.
+
 - Make a `createItem` method that accepts `name` and `callback` parameters
 - Expose the `createItem` method in your returned object at the bottom of the IIFE
 - Inside `createItem`, declare a `newItem` variable and assign it to a new object with a name key equal to the `name` value passed in. Then wrap that object in `JSON.stringify()`. This is the data we will send into our POST request.
@@ -184,6 +193,9 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
   - Delete this test code when you're sure it works.
 
 #### 4. Fetch the items and add them to the store
+
+*Objective*: Use the API `getItems()` method to fetch data, place it in the store, and re-render the page.
+
 - It's time to use our API data for our Shopping List instead of starting blank every time.
 - Bear in mind, we're soon going to obsolete our `Item` module. Validation and unique id creation is performed on the server, so we're going to get an `item` object from the server and put it directly into our store.
 - Let's simplify our `store.addItem` method. Remove all the current logic and change the signature to accept only an `item` parameter. Then just push the `item` to `this.items`.
@@ -199,6 +211,9 @@ Carefully review the docs for our [Thinkful List JSON API](https://thinkful-list
   - If all's working you should see some of the test items you made now displayed in the DOM.
 
 #### 5. Connect the Add Item event listener to our API
+
+*Objective*: Modify the event listener for adding shopping items so that it first calls `createItem()` on the API module, then places the response item in the store, then re-renders
+
 - Inside `shoppingList.js`, inside `handleNewItemSubmit`, we're going to add a call to our API before we add to our local store.
 - Try this yourself for 15 mins before continuing.
 - ...
@@ -217,6 +232,9 @@ api.createItem(newItemName, (newItem) => {
   - Ideally, we would have errors appear in the DOM to give the user feedback. Let's not worry about that yet.
 
 #### 6. Write the updateItem() API method
+
+*Objective*: Create an API method that takes in the item id and an object containing key-values intended to be updated, which makes a PATCH request to `/items/[id]` with the JSON request body
+
 - Inside `api.js`, add an `updateItem` method that accepts `id`, `updateData`, and `callback` parameters and expose it in our object at the bottom of the IIFE
 - Make an `.ajax` call with the following options:
   - `url` should be `{BASE_URL}/items/{id}`
@@ -241,6 +259,9 @@ api.createItem(newItemName, (newItem) => {
   - Delete the test code when done.
 
 #### 7. Simplify the store update methods
+
+*Objective*: Create a single `findAndUpdate` store method which takes in an `id` and object of update data to merge into the current store object. (This will obsolete the separate store methods for changing `checked` and `name`, as well as the `Item` module.)
+
 - Obsoleting the Item module is about to be complete! 
 - Let's remove both `findAndToggleChecked` and `findAndUpdateName` from the `store`
 - We're going to create a consolidated `findAndUpdate` method which just merges the attributes of an object received with the item in the store. 
@@ -260,6 +281,9 @@ api.createItem(newItemName, (newItem) => {
   - Delete the test code.
 
 #### 8. Connect the Update Event Handlers to our API
+
+*Objective*: As with the prior event listener for adding items, wire up the listeners for editing the item name and toggling the item `completed` prop to use the new `findAndUpdate` methods on your API and store. 
+
 - Inside `shoppingList.js`, modify the `handleEditShoppingItemSubmit` method
 - After you get the `id` and `newName` from the DOM, you'll need to call:
 ```javascript
