@@ -260,12 +260,11 @@ api.createItem(newItemName, (newItem) => {
 
 #### 7. Simplify the store update methods
 
-*Objective*: Create a single `findAndUpdate` store method which takes in an `id` and object of update data to merge into the current store object. (This will obsolete the separate store methods for changing `checked` and `name`, as well as the `Item` module.)
+*Objective*: Create a single `findAndUpdate` store method which takes in an `id` and an `newData` object containing new key/value pairs to merge into the current store object. (This will obsolete the separate store methods for changing `checked` and `name`, as well as the `Item` module.)
 
-- Obsoleting the Item module is about to be complete! 
 - Let's remove both `findAndToggleChecked` and `findAndUpdateName` from the `store`
-- We're going to create a consolidated `findAndUpdate` method which just merges the attributes of an object received with the item in the store. 
-- Remember to fix your IIFE returned object to expose the new `findAndUpdate` method and remove the old ones!
+- We're going to create a consolidated `findAndUpdate` method which merges the attributes of the received `newData` object with the item in the store. 
+- Remember to expose the new `findAndUpdate` method from your IIFE and remove the old ones!
 - Have the method accept `id` and `newData` parameters
 - First, find the item from `this.items` using the passed in `id`
 - Now use `Object.assign()` to merge the `newData` into the current found item
@@ -277,32 +276,22 @@ api.createItem(newItemName, (newItem) => {
   store.findAndUpdate(item.id, { name: 'foobar' });
   console.log('new name: ' + item.name);
   ```
-  - The change should be apparent in the console.
+  - The `item.name` should be updated after `.findAndUpdate` is executed.
   - Delete the test code.
 
 #### 8. Connect the Update Event Handlers to our API
 
-*Objective*: As with the prior event listener for adding items, wire up the listeners for editing the item name and toggling the item `completed` prop to use the new `findAndUpdate` methods on your API and store. 
+*Objective*: As before, wire up the listeners for editing the item name and toggling the item `completed` prop to use the new `findAndUpdate` methods on your API and store. 
 
 - Inside `shoppingList.js`, modify the `handleEditShoppingItemSubmit` method
-- After you get the `id` and `newName` from the DOM, you'll need to call:
-```javascript
-api.updateItem(id, { name: newName }, () => {
-  store.findAndUpdate(id, { name: newName });
-  render();
-});
-```
+- After you get the `id` and `newName` from the DOM, you'll need to do the following:
+  - Call `api.updateItem`, sending in the `id` and a new object containing the `newName`
+  - Inside the callback function, you now need to call `store.findAndUpdate` with the same arguments, and then run render
 - Now modify the `handleItemCheckClicked` method:
-```javascript
-const item = store.findById(id);
-api.updateItem(id, { checked: !item.checked }, () => {
-  store.findAndUpdate(id, { checked: !item.checked });
-  render();
-});
-```
-- Above, notice this is a little more complex to perform a "toggle" because we first need to fetch our item from the store to know what its CURRENT `checked` state is, and then send in the opposite state to our API. 
-  - This is a great example of how our RESTful API is stateless or "dumb" and can only make explicit changes, not consider logic based on a prior/current state.
+  - This one's a little trickier!
+  - First grab the current item in the store of the Shopping Item that the user just tried to toggle
+  - Call `api.updateItem`, sending in the `id` and a new object containing the *OPPOSITE* of what `item.checked` currently is
+  - As before, inside the callback function, call `store.findAndUpdate` sending in the same arguments, and then run render
 
-#### 9. ALMOST THERE! Complete the delete item work
-- See if you can finish the final action on your own. Good luck!
-
+#### 9. Complete the delete item work
+- See if you can finish the final CRUD action on your own.
