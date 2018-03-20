@@ -17,7 +17,7 @@ For successful submission, you *MUST* push your final version to the `gh-pages` 
 As a user:
 * I can add bookmarks to my bookmark list. Bookmarks contain:
   * title
-  * link
+  * url link
   * description
   * rating (1-5)
 
