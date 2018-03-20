@@ -4,6 +4,14 @@
 ### Project Overview
 Using everything you've learned over the Fundamentals section of the course, you will build the frontend for an API-powered Bookmarks application that lets the user store and rate their custom web bookmarks.
 
+### Due Date and Grading
+You have until the end of day Friday (typically 6PM ET) to complete your project and submit it for evaluation. To receive a passing grade, the project must:
+
+* Fulfil every non-extension user story below
+* Fulful every non-extension technical requirement below
+
+For successful submission, you *MUST* push your final version to the `gh-pages` branch of your repo.
+
 ### User Stories
 
 As a user:
@@ -28,6 +36,31 @@ As a user:
 
 * (Extension) I can edit the rating and description of a bookmark in my list
 
+### Technical Requirements
+
+* Use jQuery for AJAX and DOM manipulation
+
+* Use namespacing to adhere to good architecture practices
+  * Minimal global variables!
+  * Create modules in separate files to organize your code
+  * Logically group your functions (e.g. API methods, store methods...)
+
+* Keep your Data out of the DOM
+  * No direct DOM manipulation in your event handlers!
+  * Follow the React-ful design pattern - change your state, re-render your component
+
+* Use semantic HTML
+
+* Use [responsive design](https://courses.thinkful.com/web-dev-001v1/lesson/1.6)
+  * Visually and functionally solid in viewports for mobile and desktop
+
+* Follow a11y best practices
+  * Refer back to the lessons on [accessibility](https://courses.thinkful.com/web-dev-001v1/assignment/1.2.5), [forms](https://courses.thinkful.com/web-dev-001v1/assignment/1.5.1)
+  
+* (Extension) Follow AJAX and a11y best practices
+  * [AJAX and Aria Live](https://courses.thinkful.com/web-dev-002v1/assignment/1.2.3) for help
+
+
 ### Process
 
 1) Before coding anything, think about your user flow. What does the initial loaded page look like?  What is each action a user can take and how does it affect the visual layout?
@@ -43,18 +76,3 @@ As a user:
 6) Review the [API Documention](https://thinkful-list-api.herokuapp.com/endpoints/bookmarks). Perform some test requests with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en). 
 
 7) Construct your modules and **test every new function** as you build it.
-
-### Technical Requirements
-
-* Use jQuery for AJAX and DOM manipulation
-
-* Use namespacing to adhere to good architecture practices
-  * Minimal global variables!
-  * Logically group your functions
-
-* Use semantic HTML
-
-* Use [responsive design](https://courses.thinkful.com/web-dev-001v1/lesson/1.6)
-
-* Follow a11y best practices
-  * Refer back to the lessons on [accessibility](https://courses.thinkful.com/web-dev-001v1/assignment/1.2.5), [forms](https://courses.thinkful.com/web-dev-001v1/assignment/1.5.1), and [AJAX and Aria Live](https://courses.thinkful.com/web-dev-002v1/assignment/1.2.3) for help
