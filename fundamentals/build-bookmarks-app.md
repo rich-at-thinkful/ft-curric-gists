@@ -10,7 +10,7 @@ You have until the end of day Friday (typically 6PM ET) to complete your project
 * Fulfill every non-extension user story below
 * Fulfill every non-extension technical requirement below
 
-For successful submission, you *MUST* push your final version to the `gh-pages` branch of your repo.
+For successful submission, you *MUST* push your final version to the `gh-pages` branch of your repo. Your repo should be inside the cohort's organization and named `[yourname]-bookmarks-app`.
 
 ### User Stories
 
