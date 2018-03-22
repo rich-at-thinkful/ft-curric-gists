@@ -7,8 +7,8 @@ Using everything you've learned over the Fundamentals section of the course, you
 ### Due Date and Grading
 You have until the end of day Friday (typically 6PM ET) to complete your project and submit it for evaluation. To receive a passing grade, the project must:
 
-* Fulfil every non-extension user story below
-* Fulful every non-extension technical requirement below
+* Fulfill every non-extension user story below
+* Fulfill every non-extension technical requirement below
 
 For successful submission, you *MUST* push your final version to the `gh-pages` branch of your repo.
 
