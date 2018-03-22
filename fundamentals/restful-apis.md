@@ -295,3 +295,9 @@ api.createItem(newItemName, (newItem) => {
 
 #### 9. Complete the delete item work
 - See if you can finish the final CRUD action on your own.
+
+#### 10. Add Error Handlers for when the server responds with an error
+
+*Objective*: Setup error callbacks in your API methods. Update your event handlers to react when the error callback is invoked. Add an error key to your store and use your render method to display the error value if it exists.
+
+- Use the techniques you've learned today to complete this exercise.
