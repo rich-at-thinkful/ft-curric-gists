@@ -81,7 +81,7 @@ try {
 
 - Commit, push.
 
-7) Check if `name` and `age` have been entered. Create a conditional which throws an error if not with the message: 'Arguments not valid'.
+7) Check if `name` and `age` have been entered. If not, create a conditional which throws an error with the message: 'Arguments not valid'.
 
 > Hint: How do you check if a parameter or variable has not been "defined"?
 
