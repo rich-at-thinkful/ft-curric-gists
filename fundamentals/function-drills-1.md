@@ -1,12 +1,24 @@
-### Complete and commit and push each task below. Parts of the code are shown as hints, the rest as been "redacted" 
+### Complete and commit and push each task below. Parts of the code are shown as hints, the rest has been "redacted." 
 
 1) Write a statement which logs 'Hi, my name is Chris and I'm 29 years old' to the console (use your name and you can lie about your age). 
 
 > Notice the single quote in `... and I'm ...`
 
+```
+console.....('Hi, my name is....');
+```
+
 - Remember to commit and push
 
 2) Wrap the statement in a function called `createGreeting` and call that function
+
+```
+function createGr.... {
+  console.....('Hi, name is is........');
+}
+
+createGreeting();
+```
 
 - Remember to commit and ...
 
@@ -91,3 +103,6 @@ try {
 > Hint: `typeof age`
 > Investigate: What is `NaN`?
 
+---
+
+Once completed, check your file against [this solution](solutions/function-drills-1-solution.md). This is for reference only once you've completed the task, NOT to help with the challenge. You should work through the exercise with your pair and consult a TA for help first.
