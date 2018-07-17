@@ -15,23 +15,28 @@
 
 ## Functions as arguments (2)
 
-Let's write our own version of the [filter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) which is used to create a new array from an old array, but only including elements that meet criteria set in the callback function. The usage is below; we recommend you paste this code into your code editor and write your function in the space indicated:
+Let's write our own version of the [filter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) which is used to create a new array from an old array, but only including elements that meet criteria set in the callback function. The usage is below. Paste this code into your code editor and write your function in the space indicated. Review the code beneath to study how it's meant to be used.
 
-```
-// DO NOT EDIT BETWEEN THESE LINES ----->
-// Return only names that begin with 'R'
+```javascript
+function filter() {
+    // TASK: Define your function here
+}
+
+// DO NOT EDIT BETWEEN THESE LINES, BUT DO READ THE CODE ----->
+// First we setup an array of strings we plan to filter:
 const myNames = ['Rich', 'Joe', 'Bhaumik', 'Ray'];
 
+// We use your `filter` function here, capturing a new array into `filteredNames`
+// comprised of names that only begin with 'R'
 const filteredNames = filter(myNames, function(name) {
-    // This is a "predicate function" - it's a function that only returns a boolean
+    // This is known as a "predicate function" - it's a function that 
+    // only returns a boolean
     return name[0] === 'R';
 });
 
 console.log(filteredNames) // => ['Rich', 'Ray']
 // <---- DO NOT EDIT BETWEEN THESE LINES
 
-// TASK: DEFINE YOUR FILTER FUNCTION BELOW:
-function filter() {}
 ```
 
 * Create a function called `filter`, which takes two arguments:
