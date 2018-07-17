@@ -45,7 +45,7 @@ function createGreeting(name, age){
 
 - Remember to ...
 
-5) Create a variable named `yearOfBirth` and calculate the year based on age (ex. 2016 - age). Then add sentence to the return value that outputs 'I was born in [yearOfBirth]'.
+5) Create a variable named `yearOfBirth` and calculate the year based on age (ex. 2016 - age). Then add a sentence to the return value which outputs 'I was born in [yearOfBirth]'.
 
 ```
 function createGreeting(name, age){ 
@@ -56,11 +56,11 @@ function createGreeting(name, age){
 
 - Just do it...
 
-6) Move the year of birth calculation into a new function. 
+6) Move the year of birth calculation into a new function which returns the value expected. 
 
 ```
 function getYearOfBirth(age){
-  ...
+  return ...
 }
 
 function createGreeting(name, age){
