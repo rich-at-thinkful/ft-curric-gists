@@ -8,7 +8,7 @@ The structure of a project can vary wildly, based on conventions and individual 
 
 #### Startup instructions:
 
-* Clone [this repo](https://github.com/rich-at-thinkful/shopping-list-01) to your local machine and change directory into the new folder
+* Clone the pinned repo from your Cohort Organization to your local machine and change directory into the new folder
 * On Github.com, create a new repo in your Thinkful Cohort organization `module-exercises-[your-names]` and copy the clone URL to your clipboard
 * Change the `origin` URL of your local repo to your new Thinkful cohort org's repo:
   * `git remote set-url origin [your-repo-url]`

@@ -37,10 +37,7 @@ This approach utilizes event delegation. Note that this solution requires listen
 ```javascript
 // Add Event Listeners here:
 function handleMove(e) {
-  const cell = $(e.target).closest('.cell');
-  if (cell.length === 1) {
-    cell.addClass('active');
-  }
+  $(e.target).addClass('active');
 }
 
 function handleClickClear() {
@@ -52,7 +49,7 @@ $(() => {
   createAndPlaceRows(8);
 
   // Bind your event listeners here:
-  $('.grid').on('mousemove', handleMove);
+  $('.grid').on('mousemove', '.cell', handleMove);
 
   $('.controls').find('button').click(() => createAndPlaceRows(8));
 });
