@@ -126,6 +126,7 @@ const store = (function () {
 ``` 
 - Move `items`, `hideCheckedItems`, and `searchTerm` from the `store` object in `index.js` into your `store.js` IIFE, converting them to local variables
 - In the object returned from the `store` IIFE, include the `items`, `hideCheckedItems`, `searchTerm` keys pointing to their local variables of the same name. (You can use Object Property Shorthand here if you want.)
+- With your `store` moved to its own file, make sure to remove the `store` declared in your `index.js`.
 - For ESLint cleanliness, remember to add/remove global variable definitions at the top of each file when they are/aren't in use. Use the cues when you see errors in your file!
 - Test your module! 
   - Create a variable at the top of your `store.js` IIFE (**NOT** the top of the file): `const foo = 'bar';` 
