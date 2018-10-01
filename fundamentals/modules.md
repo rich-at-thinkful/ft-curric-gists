@@ -108,7 +108,7 @@ There's a lot of punctuation in there but it's not that complex. Instead of decl
 
 Our Shopping List App so far has limited code organization. Let's set up a file hierarchy and create modules. Remember you are building a web application, so to test your code, you need to start your web server and use your browser's console.
 
-**IMPORTANT:** Start from this [project repo](https://github.com/rich-at-thinkful/shopping-list-01/tree/master), making sure to follow the instructions [above](#startup-instructions). 
+**IMPORTANT:** Start from the `shopping-list-week-2` repo pinned in your cohort's organization, making sure to follow the instructions [above](#startup-instructions). 
 
 First, review the file structure to make sure you understand it and then review the `shopping-list.js` module, paying attention to the IIFE pattern and the returned object at the bottom, which only exposes two functions from the module. Explain out loud what is happening with your pair to solidify the concepts. Now, complete the exercises to build out some additional modules:
 
