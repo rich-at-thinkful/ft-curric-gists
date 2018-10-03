@@ -113,8 +113,9 @@ Let's take what we've learned in our practice with APIs and today's reading to c
 Start from the `store-solution` branch on your organization's repo
 * Clone the Shopping List repo to a new folder:
   - `git clone https://github.com/[your-thinkful-org]/shopping-list-week-2.git shopping-list-api-day`
-* Move into the project directory, then you will need to checkout to the `store-solution` branch
-  - `git checkout store-solution`
+* Move into the project directory, then you will need to checkout to the `with-store` branch
+  - `git branch --all` (this shows remote branches available)
+  - `git checkout with-store`
 * From this branch, we're going to create a new branch. This is where you will work on today's exercises:
   - `git checkout -b api`
 * Create a new repo in the Cohort Organization `'api-day-[your-names]'` then set the origin url to your new repo:
