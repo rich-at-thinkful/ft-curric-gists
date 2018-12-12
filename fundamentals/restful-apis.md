@@ -110,7 +110,7 @@ This walkthrough was to demonstrate the usefulness of an API debugging tool like
 
 Let's take what we've learned in our practice with APIs and today's reading to convert our Shopping List to use a backend API and persistently store our data. 
 
-Start from the `store-solution` branch on your organization's repo
+Start from the `with-store` branch on your organization's repo
 * Clone the Shopping List repo to a new folder:
   - `git clone https://github.com/[your-thinkful-org]/shopping-list-week-2.git shopping-list-api-day`
 * Move into the project directory, then you will need to checkout to the `with-store` branch
